@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using NetBaires.Models.Meetup;
 
 namespace NetBaires.Models

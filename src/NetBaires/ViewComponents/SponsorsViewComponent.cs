@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NetBaires.Models;
-using NetBaires.Pages;
 using NetBaires.Services;
 
 namespace NetBaires.ViewComponents

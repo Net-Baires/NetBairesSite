@@ -15,6 +15,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0-preview2-35157" PrivateAssets="All" />
     <PackageReference Include="Polly" Version="6.1.0" />
     <PackageReference Include="Polly.Caching.Memory" Version="2.0.0" />
+    <PackageReference Include="TweetinviAPI" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,7 +40,7 @@
     <Content Update="Pages\Components\Sponsors\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Sponsors\Detail.cshtml">
+    <Content Update="Pages\Twitter\Prize.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>

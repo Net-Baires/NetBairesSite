@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using NetBaires.Models.Meetup;
-
-namespace NetBaires.Data
+﻿namespace NetBaires.Data
 {
     public class SpeakerEvent
     {
