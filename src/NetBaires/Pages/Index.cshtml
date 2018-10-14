@@ -6,7 +6,7 @@
 
 
 @await Component.InvokeAsync("LastEvents")
-@await Component.InvokeAsync("PhotosPreview")
+@await Component.InvokeAsync("PhotosPreview",Model.Photos)
 @await Component.InvokeAsync("Sponsors")
 @await Component.InvokeAsync("Speakers")
 @await Component.InvokeAsync("Organizers")

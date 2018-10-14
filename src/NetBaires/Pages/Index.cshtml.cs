@@ -17,6 +17,8 @@ namespace NetBaires.Pages
     {
         private readonly IMeetupService _meetupService;
         public List<EventViewModel> Events { get; set; } = new List<EventViewModel>();
+        public List<PhotoViewModel> Photos { get; set; } = new List<PhotoViewModel>();
+
         public IndexModel(IMeetupService meetupService)
         {
             _meetupService = meetupService;
@@ -29,7 +31,11 @@ namespace NetBaires.Pages
                 .ToList()
                 .OrderByDescending(x => x.Date);
             Events.AddRange(eventsToAdd);
+            var lastEvents = (await _meetupService.GetEvents(5));
+            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList())).Select(x => new PhotoViewModel(x)).ToList();
         }
+
+
         public async Task OnPostContactUs(ContactUsViewModel contactUs)
         {
 

@@ -49,10 +49,10 @@ namespace NetBaires.Services
             return await result.Content.ReadAsAsync<List<EventDetail>>();
         }
     
-        public async Task<List<PhotoDetail>> GetPhotos(List<string> eventsIds = null)
+        public async Task<List<PhotoDetail>> GetPhotos(List<string> eventsIds = null, int count = 20)
         {
             var urlRequest =
-                $"/2/photos?key={_meetupOptions.Value.Key}&group_urlname={GroupName}&page=20";
+                $"/2/photos?key={_meetupOptions.Value.Key}&group_urlname={GroupName}&page={count}";
             if (eventsIds != null)
                 urlRequest += $"&event_id={string.Join(",", eventsIds)}";
             var eventsResults = await _client.GetAsync(urlRequest);

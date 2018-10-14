@@ -13,6 +13,6 @@ namespace NetBaires.Services
         Task<List<Attendance>> GetAttendance(string eventId, int page);
         Task<GroupDetail> GroupDetail();
         Task<List<MemberDetail>> GetLeads();
-        Task<List<PhotoDetail>> GetPhotos(List<string> eventsIds = null);
+        Task<List<PhotoDetail>> GetPhotos(List<string> eventsIds = null, int count = 20);
     }
 }

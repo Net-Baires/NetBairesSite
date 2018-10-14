@@ -12,8 +12,8 @@ namespace NetBaires.Pages.Sponsors
 {
     public class DetailModel : PageModel
     {
-        [BindProperty]
         public List<EventViewModel> Events { get; set; } = new List<EventViewModel>();
+        public List<PhotoViewModel> Photos { get; set; }
         public SponsorViewModel Sponsor { get; set; }
 
 
@@ -41,6 +41,7 @@ namespace NetBaires.Pages.Sponsors
                 .ToList()
                 .FirstOrDefault(s => s.Name == id);
             Events = events?.Select(x => new EventViewModel(x)).ToList();
+            Photos = (await _meetupService.GetPhotos(events.Select(x => x.Id).ToList(), 50)).Select(x => new PhotoViewModel(x)).ToList();
         }
 
     }

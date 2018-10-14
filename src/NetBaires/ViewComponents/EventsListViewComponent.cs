@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NetBaires.Models;
@@ -7,19 +6,18 @@ using NetBaires.Services;
 
 namespace NetBaires.ViewComponents
 {
-    public class PhotosPreviewViewComponent : ViewComponent
+    public class EventsListViewComponent : ViewComponent
     {
         private readonly IMeetupService _meetupService;
 
-        public PhotosPreviewViewComponent(IMeetupService meetupService)
+        public EventsListViewComponent(IMeetupService meetupService)
         {
             _meetupService = meetupService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(List<PhotoViewModel> photos)
+        public async Task<IViewComponentResult> InvokeAsync(List<EventViewModel> events)
         {
-        
-            return View(photos);
+            return View(events);
         }
     }
 }

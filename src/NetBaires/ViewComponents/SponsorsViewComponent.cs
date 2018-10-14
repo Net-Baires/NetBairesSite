@@ -23,18 +23,4 @@ namespace NetBaires.ViewComponents
             return View(sponsors);
         }
     }
-    public class ContactUsViewComponent : ViewComponent
-    {
-        [BindProperty]
-        public ContactUsViewModel ContactUs { get; set; } = new ContactUsViewModel();
-        public ContactUsViewComponent( )
-        {
-         
-        }
-
-        public IViewComponentResult Invoke()
-        {
-            return View(ContactUs);
-        }
-    }
 }

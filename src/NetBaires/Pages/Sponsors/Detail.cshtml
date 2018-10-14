@@ -274,4 +274,9 @@
         </div>
     </div>
 </div>
+
+<h3>Eventos</h3>
 @await Component.InvokeAsync("EventsList", Model.Events)
+
+<h3>Fotos</h3>
+@await Component.InvokeAsync("PhotosPreview", Model.Photos)
