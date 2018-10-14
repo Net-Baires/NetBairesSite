@@ -1,0 +1,68 @@
+﻿@page
+@model NetBaires.Pages.Events.ListModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Imagen
+                    </th>
+                    
+                    <th>
+                        Fecha
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Events)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                          <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <img style="width: 50px" src="@item.ImageUrl" />
+                        </td>
+                      
+                        <td></td>
+                        @if (item.Date < DateTime.Now)
+                        {
+                            <td>
+                                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

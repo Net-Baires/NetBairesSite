@@ -1,0 +1,30 @@
+﻿@model List<Models.EventViewModel>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-page="/Events/Detail" class="btn btn-default" asp-route-id="@item.Id"> @item.Name</a>
+
+                </td>
+                <td>
+                    <img style="width:300px" src="@item.ImageUrl" />
+                </td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
