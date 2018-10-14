@@ -37,16 +37,11 @@ namespace NetBaires.Models
             Name = attendance.Member.name;
             ImageUrl = attendance.Member?.photo?.highres_link;
         }
-        [BindProperty]
         public string Id { get; set; }
-        [BindProperty]
         public string Name { get; set; }
         public string Bio { get; set; }
-        [BindProperty]
         public string Email { get; set; }
-        [BindProperty]
         public string ImageUrl { get; set; }
-        [BindProperty]
         public bool IsSpeaker { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }

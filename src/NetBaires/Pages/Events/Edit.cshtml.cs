@@ -80,7 +80,7 @@ namespace NetBaires.Pages.Events
             SetSponsorContext(eventToModifier);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("../Index");
+            return RedirectToPage("/Events/List");
         }
 
         private void SetSpeakerContext(EventDb eventToModifier)
