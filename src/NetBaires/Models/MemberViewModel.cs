@@ -22,7 +22,11 @@ namespace NetBaires.Models
             Facebook = member.other_services?.facebook?.identifier;
             Linkedin = member.other_services?.linkedin?.identifier;
             Twitter = member.other_services?.twitter?.identifier;
+            if (member?.photo?.highres_link != null)
             ImageUrl = member?.photo?.highres_link;
+            else
+                ImageUrl = member?.photo?.photo_link;
+
         }
 
         public MemberViewModel()

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using NetBaires.Data;
 using NetBaires.Models;
 using NetBaires.Services;
@@ -33,8 +34,11 @@ namespace NetBaires.Pages
             var nextEvent = await _meetupService.GetEvents(1);
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.FirstOrDefault());
+            var SpesakersToShow = _context.Speakers.Include(x=> x.Events).Where(x => x.Events.Any())
+                .OrderByDescending(x => x.Events.Count)
+                ?.ToList();
             SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
-                .OrderBy(x => x.Events.Count)
+                .OrderByDescending(x => x.Events.Count)
                 .Take(6)
                 ?.ToList()
                 .Select(x => x.Id).ToList();
