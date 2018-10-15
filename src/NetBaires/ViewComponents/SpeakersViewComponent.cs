@@ -19,14 +19,21 @@ namespace NetBaires.ViewComponents
             _context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(List<string> speakersToShowIds)
         {
             var speakersToShow = new List<MemberViewModel>();
 
-            var speakers = _context.Speakers.ToList();
-            if (speakers.Any())
+            //var speakers = _context.Speakers.ToList();
+            //if (speakers.Any())
+            //{
+            //    var memebers = await _meetupService.GetMembersDetail(speakers?.Select(x => x.Id).ToList());
+            //    foreach (var speaker in memebers)
+            //        speakersToShow.Add(new MemberViewModel(speaker));
+            //}
+            //return View(speakers);
+            if (speakersToShowIds.Any())
             {
-                var memebers = await _meetupService.GetMembersDetail(speakers?.Select(x => x.Id).ToList());
+                var memebers = await _meetupService.GetMembersDetail(speakersToShowIds);
                 foreach (var speaker in memebers)
                     speakersToShow.Add(new MemberViewModel(speaker));
             }

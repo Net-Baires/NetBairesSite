@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NetBaires.Data;
 using NetBaires.Models;
 using NetBaires.Services;
 
@@ -12,18 +13,28 @@ namespace NetBaires.Pages
     public class IndexModel : PageModel
     {
         private readonly IMeetupService _meetupService;
+        private readonly ApplicationDbContext _context;
         public List<EventViewModel> Events { get; set; } = new List<EventViewModel>();
         public List<PhotoViewModel> Photos { get; set; } = new List<PhotoViewModel>();
+        public EventViewModel Event{ get; set; }
+        public List<string> SpeakersToShow { get; set; } = new List<string>();
 
-        public IndexModel(IMeetupService meetupService)
+
+        public IndexModel(IMeetupService meetupService, ApplicationDbContext context)
         {
             _meetupService = meetupService;
+            _context = context;
         }
         public async Task OnGet()
         {
-
-
-    
+            var nextEvent = await _meetupService.GetEvents(1);
+            if (nextEvent.Any())
+                Event = new EventViewModel(nextEvent.FirstOrDefault());
+            SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
+                .OrderBy(x => x.Events.Count)
+                .Take(6)
+                ?.ToList()
+                .Select(x => x.Id).ToList();
 
             var events = await _meetupService.GetEvents(500);
             var eventsToAdd = events?.Select(x =>

@@ -1,17 +1,11 @@
 ﻿@model List<Models.SponsorViewModel>
-<h3>Sponsors</h3>
-<div class="card-group">
+<div class="sponsors-area sponsors-area-colorfull-border">
     @foreach (var sponsor in Model)
     {
-
-        <div class="card" style="width: 18rem; float: left">
+        <div class="single">
             <a asp-page="./Sponsors/Detail" asp-route-id="@sponsor.Name">
-                <img class="card-img-top" src="@sponsor.ImageUrl" alt="Card image cap">
+                <img style="width:214px; height :71px;" src="@sponsor.ImageUrl" alt="sponsor" />
             </a>
-            <div class="card-body">
-                <h5 class="card-title">@sponsor.Name</h5>
-                <p class="card-text">@sponsor.Info</p>
-            </div>
         </div>
     }
 </div>

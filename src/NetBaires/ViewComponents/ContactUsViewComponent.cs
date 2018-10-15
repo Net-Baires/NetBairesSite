@@ -7,9 +7,9 @@ namespace NetBaires.ViewComponents
     {
         [BindProperty]
         public ContactUsViewModel ContactUs { get; set; } = new ContactUsViewModel();
-        public ContactUsViewComponent( )
+        public ContactUsViewComponent()
         {
-         
+
         }
 
         public IViewComponentResult Invoke()
@@ -17,4 +17,31 @@ namespace NetBaires.ViewComponents
             return View(ContactUs);
         }
     }
+    public class BreadcrumbViewComponent : ViewComponent
+    {
+        public BreadcrumbViewModel Breadcrumb { get; set; }
+        public BreadcrumbViewComponent()
+        {
+
+        }
+
+        public IViewComponentResult Invoke(BreadcrumbViewModel breadcrumbViewModel)
+        {
+            return View(breadcrumbViewModel);
+        }
+    }
+
+    public class BreadcrumbViewModel
+    {
+        public string Title { get; set; }
+        public string ActualPage { get; set; }
+
+        public BreadcrumbViewModel(string title, string actualPage)
+        {
+            Title = title;
+            ActualPage = actualPage;
+        }
+    }
+
+
 }

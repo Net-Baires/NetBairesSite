@@ -1,0 +1,20 @@
+﻿@page
+@using ViewComponents
+@model Speakers.ListModel
+@{
+    ViewData["Title"] = "Detail";
+}
+@await Component.InvokeAsync("Breadcrumb", new BreadcrumbViewModel("Fueron Speakers", "SpeakerS"))
+
+
+<main>
+    <div class="lgx-page-wrapper">
+
+
+        <!--News-->
+        <section>
+            @await Component.InvokeAsync("Speakers", Model.SpeakersToShow)
+        </section>
+
+    </div>
+</main>

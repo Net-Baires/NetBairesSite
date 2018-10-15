@@ -19,80 +19,324 @@
         <!-- Latest compiled and minified CSS -->
     </environment>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
-    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+    <!-- this icon shows in browser toolbar -->
+    <!-- this icon shows in browser toolbar -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/img/favicon/manifest.json">
 
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/libs/bootstrap/css/bootstrap.min.css" media="all" />
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="/assets/libs/fontawesome/css/font-awesome.min.css" media="all" />
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="/assets/libs/maginificpopup/magnific-popup.css" media="all" />
+
+    <!-- Time Circle -->
+    <link rel="stylesheet" href="/assets/libs/timer/TimeCircles.css" media="all" />
+
+    <!-- OWL CAROUSEL CSS -->
+    <link rel="stylesheet" href="/assets/libs/owlcarousel/owl.carousel.min.css" media="all" />
+    <link rel="stylesheet" href="/assets/libs/owlcarousel/owl.theme.default.min.css" media="all" />
+
+    <!-- GOOGLE FONT -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:400,700%7cRaleway:300,400,400i,500,600,700,900" />
+
+    <!-- MASTER  STYLESHEET  -->
+    <link id="lgx-master-style" rel="stylesheet" href="/assets/css/style-default.min.css" media="all" />
+
+    <!-- MODERNIZER CSS  -->
+    <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
-<body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-page="/Index" class="navbar-brand">NetBaires</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a asp-page="/Events/List">Events</a></li>
-                        <li><a asp-page="/Twitter/Prize">Twitter Prize</a></li>
-                    }
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
-        </div>
-    </nav>
-
+<body class="home">
     <partial name="_CookieConsentPartial" />
+    <div class="lgx-container ">
+        <!-- ***  ADD YOUR SITE CONTENT HERE *** -->
+        <!--HEADER-->
+        <header>
+            <div id="lgx-header" class="lgx-header">
+                <div  class="lgx-header-position lgx-header-position-white lgx-header-position-fixed ">
+                    <!--lgx-header-position-fixed lgx-header-position-white lgx-header-fixed-container lgx-header-fixed-container-gap lgx-header-position-white-->
+                    <div class="lgx-container-fluid">
+                        <!--lgx-container-fluid-->
+                        <nav class="navbar navbar-default lgx-navbar">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="lgx-logo">
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+                                    <a href="index.html" class="lgx-scroll">
+                                        <img src="/assets/img/logo.png" alt="Eventhunt Logo" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <div class="lgx-nav-right navbar-right">
+                                    <div class="lgx-cart-area">
+                                        <a class="lgx-btn lgx-btn-red" href="#">Buy Ticket</a>
+                                    </div>
+                                </div>
+                                <ul class="nav navbar-nav lgx-nav navbar-right">
+
+                                    <li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a href="index.html" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                                            <ul class="dropdown-menu multi-level">
+                                                <li><a asp-page="/Events/List">Events</a></li>
+                                                <li><a asp-page="/Twitter/Prize">Twitter Prize</a></li>
+
+                                            </ul>
+                                        }
+                                    <li>
+
+                                    <li>
+                                        <a href="index.html" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+                                        <ul class="dropdown-menu multi-level">
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="schedules.html">Schedule</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    Speakers
+                                                    <span class="caret"></span>
+                                                </a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="speakers.html">Speakers List</a></li>
+                                                    <li><a href="speaker.html">Speaker Single</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="sponsors.html">Sponsors List</a></li>
+                                            <li><a href="registration.html">Registration</a></li>
+                                            <li><a href="gallery.html">Photo Gallery</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">News <span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="news.html">News</a></li>
+                                                    <li><a href="news-single.html">News Single</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li class="dropdown-submenu">
+                                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                    <li class="dropdown-submenu">
+                                                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown Two<span class="caret"></span></a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#">Dropdown Three</a></li>
+                                                            <li><a href="#">Dropdown Three</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Dropdown Two</a></li>
+                                                    <li><a href="#">Dropdown Two</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a  class="lgx-scroll" href="#lgx-speakers">Speakers2</a></li>
+                                    <li><a class="lgx-scroll" href="#lgx-schedule">Schedule</a></li>
+                                    <li><a class="lgx-scroll" href="#lgx-sponsors">Sponsors</a></li>
+                                    <li><a class="lgx-scroll" href="#lgx-news">News</a></li>
+                                    <li><a class="lgx-scroll" href="contact.html">Contact</a></li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </nav>
+                    </div>
+                    <!-- //.CONTAINER -->
+                </div>
+            </div>
+        </header>
+        <!--HEADER END-->
+
+    @RenderBody()
+      
+        <!--FOOTER-->
         <footer>
-            <p>&copy; 2018 - NetBaires</p>
+            <div id="lgx-footer" class="lgx-footer">
+                <!--lgx-footer-white-->
+                <div class="lgx-inner-footer">
+                    <div class="lgx-subscriber-area ">
+                        <div class="container">
+                            <div class="lgx-subscriber-inner">
+                                <!--lgx-subscriber-inner-indiv-->
+                                <h3 class="subscriber-title">Join Newsletter</h3>
+                                <form class="lgx-subscribe-form">
+                                    <div class="form-group form-group-email">
+                                        <input type="email" id="subscribe" placeholder="Enter your email Address  ..." class="form-control lgx-input-form form-control" />
+                                    </div>
+                                    <div class="form-group form-group-submit">
+                                        <button type="submit" name="lgx-submit" id="lgx-submit" class="lgx-btn lgx-submit"><span>Subscribe</span></button>
+                                    </div>
+                                </form> <!--//.SUBSCRIBE-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="lgx-footer-area">
+                            <div class="lgx-footer-single">
+                                <a class="logo" asp-page="/Index"><img style="width: 200px;" src="http://germankuber.com.ar/wp-content/uploads/2018/03/logo_netbaires-new.png" alt="Logo"></a>
+                            </div> <!--//footer-area-->
+                            <div class="lgx-footer-single">
+                                <h3 class="footer-title">Venue Location </h3>
+                                <h4 class="date">
+                                    18 - 21 December, 2019
+                                </h4>
+                                <address>
+                                    85 Golden Street, Darlinghurst <br>
+                                    ERP 2019, United States
+                                </address>
+                                <a id="myModalLabel2" data-toggle="modal" data-target="#lgx-modal-map" class="map-link" href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> View Map location</a>
+                            </div>
+                            <div class="lgx-footer-single">
+                                <h3 class="footer-title">Social Connection</h3>
+                                <p class="text">
+                                    You should connect social area <br> for Any update
+                                </p>
+                                <ul class="list-inline lgx-social-footer">
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                            <!--<div class="lgx-footer-single">
+                                <h2 class="footer-title">Instagram Feed</h2>
+                                <div id="instafeed">
+                                </div>
+                            </div>-->
+                        </div>
+                        <!-- Modal-->
+                        <div id="lgx-modal-map" class="modal fade lgx-modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="lgxmapcanvas map-canvas-default" id="map_canvas"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- //.Modal-->
+
+                        <div class="lgx-footer-bottom">
+                            <div class="lgx-copyright">
+                                <p> <span>©</span> 2018 EventHunt is powered by <a href="http://www.themearth.com/">themearth.</a> The property of their owners.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- //.CONTAINER -->
+                </div>
+                <!-- //.footer Middle -->
+            </div>
         </footer>
-    </div>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
-    @RenderSection("Scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $('.table').DataTable( {
-                "order": [[ 0, "desc" ]],
-                stateSave: true
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+        @RenderSection("Scripts", required: false)
+        <script>
+            $(document).ready(function () {
+                $('.table').DataTable({
+                    "order": [[0, "desc"]],
+                    stateSave: true
+                });
             });
-        });
-    </script>
+        </script>
+        <!--//.LGX SITE CONTAINER-->
+        <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
+        <!-- JQUERY  -->
+        <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+
+        <!-- BOOTSTRAP JS  -->
+        <script src="/assets/libs/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Smooth Scroll  -->
+        <script src="/assets/libs/jquery.smooth-scroll.js"></script>
+
+        <!-- SKILLS SCRIPT  -->
+        <script src="/assets/libs/jquery.validate.js"></script>
+
+        <!-- if load google maps then load this api, change api key as it may expire for limit cross as this is provided with any theme -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQvRGGtL6OrpP5xVMxq_0NgiMiRhm3ycI"></script>
+
+        <!-- CUSTOM GOOGLE MAP -->
+        <script type="text/javascript" src="/assets/libs/gmap/jquery.googlemap.js"></script>
+
+        <!-- adding magnific popup js library -->
+        <script type="text/javascript" src="/assets/libs/maginificpopup/jquery.magnific-popup.min.js"></script>
+
+        <!-- Owl Carousel  -->
+        <script src="/assets/libs/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- COUNTDOWN   -->
+        <script src="/assets/libs/countdown.js"></script>
+        <script src="/assets/libs/timer/TimeCircles.js"></script>
+
+        <!-- Counter JS -->
+        <script src="/assets/libs/waypoints.min.js"></script>
+        <script src="/assets/libs/counterup/jquery.counterup.min.js"></script>
+
+        <!-- SMOTH SCROLL -->
+        <script src="/assets/libs/jquery.smooth-scroll.min.js"></script>
+        <script src="/assets/libs/jquery.easing.min.js"></script>
+
+        <!-- type js -->
+        <script src="/assets/libs/typed/typed.min.js"></script>
+
+        <!-- header parallax js -->
+        <script src="/assets/libs/header-parallax.js"></script>
+
+        <!-- instafeed js -->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>-->
+        <script src="/assets/libs/instafeed.min.js"></script>
+
+        <!-- CUSTOM SCRIPT  -->
+        <script src="/assets/js/custom.script.js"></script>
+
 </body>
 </html>
