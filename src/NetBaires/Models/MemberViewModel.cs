@@ -23,15 +23,17 @@ namespace NetBaires.Models
             Linkedin = member.other_services?.linkedin?.identifier;
             Twitter = member.other_services?.twitter?.identifier;
             if (member?.photo?.highres_link != null)
-            ImageUrl = member?.photo?.highres_link;
+                ImageUrlHigh = member?.photo?.highres_link;
             else
-                ImageUrl = member?.photo?.photo_link;
+                ImageUrlHigh = member?.photo?.photo_link;
+            ImageUrl = member?.photo?.photo_link;
+
 
         }
 
         public MemberViewModel()
         {
-            
+
         }
 
         public MemberViewModel(Attendance attendance)
@@ -45,6 +47,7 @@ namespace NetBaires.Models
         public string Bio { get; set; }
         public string Email { get; set; }
         public string ImageUrl { get; set; }
+        public string ImageUrlHigh { get; set; }
         public bool IsSpeaker { get; set; }
         public string Facebook { get; set; }
         public string Twitter { get; set; }
