@@ -51,12 +51,12 @@ namespace NetBaires.Models
         {
             if (venue != null)
             {
-                Address = venue.address_1;
-                CompanyName = venue.name;
-                City = venue.city;
+                Address = venue?.address_1;
+                CompanyName = venue?.name;
+                City = venue?.city;
                 Lat = venue.lat;
                 Long = venue.lon;
-                Country = venue.localized_country_name;
+                Country = venue?.localized_country_name;
             }
 
         }

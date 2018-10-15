@@ -69,7 +69,7 @@ namespace NetBaires.Services
         {
             var eventsResults = await _client.GetAsync(
                 $"/2/members?key={_meetupOptions.Value.Key}&member_id={string.Join(",", membersId)}&page=9999");
-            return (await eventsResults.Content.ReadAsAsync<MembersRoot>()).Results.ToList();
+            return (await eventsResults.Content.ReadAsAsync<MembersRoot>())?.Results?.ToList();
         }
         public async Task<List<MemberDetail>> GetLeads()
         {
