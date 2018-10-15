@@ -4,7 +4,15 @@
     ViewData["Title"] = "Home page";
 }
 
+<style>
+    .slick-prev {
+        display: none !important;
+    }
 
+    .slick-next {
+        display: none !important;
+    }
+</style>
 @*
     @await Component.InvokeAsync("Sponsors")
     @await Component.InvokeAsync("Speakers")
@@ -191,10 +199,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="slider-class">
+                <div class="row visible-md visible-lg">
+                    <div class="slider-class ">
                         @await Component.InvokeAsync("LastEvents")
                     </div>
+                </div>
+                <div class="row visible-xs visible-sm">
+                    @await Component.InvokeAsync("LastEvents")
                 </div>
                 <div class="section-btn-area">
                     <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/past/">Todos Nuestros Eventos</a>
@@ -216,7 +227,16 @@
                         </div>
                     </div>
                 </div>
-                @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                <div class="row visible-md visible-lg">
+                    <div class="col-xs-12 slider-class">
+                        @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                    </div>
+                </div>
+                <div class="row visible-xs visible-sm">
+                    <div class="col-xs-12">
+                        @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -251,7 +271,8 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         </div>
                                         <div class="modal-body">
-                                            <iframe id="modalvideo" src="https://www.youtube.com/watch?v=f3NWvUV8MD8" allowfullscreen></iframe>
+                                            <iframe width="1280" height="720" src="https://www.youtube.com/embed/t5X2PxtvMsU" frameborder="0" allowfullscreen></iframe>
+
                                         </div>
                                     </div>
                                 </div>
@@ -282,17 +303,17 @@
                             <div class="lgx-travelinfo-single">
                                 <img src="assets/img/info-icon1.png" alt="location" />
                                 <h3 class="title">Comunidad</h3>
-                              @*  <p class="info">Docklands Convention Centre 58 Wurundjeri Way Dablin, 3000</p>*@
+                                @*  <p class="info">Docklands Convention Centre 58 Wurundjeri Way Dablin, 3000</p>*@
                             </div>
                             <div class="lgx-travelinfo-single">
                                 <img src="assets/img/info-icon2.png" alt="Transport" />
                                 <h3 class="title">Tecnología</h3>
-                               @* <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do incididunt</p>*@
+                                @* <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do incididunt</p>*@
                             </div>
                             <div class="lgx-travelinfo-single">
                                 <img src="assets/img/info-icon3.png" alt="Hotel & Restaurant" />
                                 <h3 class="title">Innovación</h3>
-                               @* <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do incididunt</p>*@
+                                @* <p class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do incididunt</p>*@
                             </div>
                         </div>
                     </div>

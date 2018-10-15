@@ -46,6 +46,9 @@
     <Content Update="Pages\Components\Sponsors\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\JoinSlack.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Speakers\List.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
