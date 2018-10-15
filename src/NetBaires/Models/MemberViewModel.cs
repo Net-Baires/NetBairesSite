@@ -27,9 +27,12 @@ namespace NetBaires.Models
             else
                 ImageUrlHigh = member?.photo?.photo_link;
             ImageUrl = member?.photo?.photo_link;
+            City = member.city;
 
 
         }
+
+        public string City { get; set; }
 
         public MemberViewModel()
         {
