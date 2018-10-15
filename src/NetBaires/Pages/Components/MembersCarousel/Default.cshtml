@@ -1,0 +1,30 @@
+﻿@model List<Models.MemberViewModel>
+<div class="row">
+    <div class="col-xs-12">
+        @if (Model != null)
+        {
+
+            foreach (var memberViewModel in Model)
+            {
+
+                <div class="lgx-col3 lgx-single-speaker2">
+                    <figure>
+                        <a class="profile-img" style="width: 380px; height: 410px;" href="@memberViewModel.Linkedin"><img src="@memberViewModel.ImageUrl" alt="Speaker" /></a>
+                        <figcaption>
+                            <div class="social-group">
+                                <a class="sp-tw" href="@memberViewModel.Twitter"><i class="fa fa-twitter"></i></a>
+                                <a class="sp-fb" href="@memberViewModel.Facebook"><i class="fa fa-facebook"></i></a>
+                                @*<a class="sp-insta" href="#"><i class="fa fa-instagram"></i></a>*@
+                                <a class="sp-in" href="@memberViewModel.Linkedin"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                            <div class="speaker-info">
+                                <h3 class="title"><a href="https://www.meetup.com/es-ES/members/@memberViewModel.Id/">@memberViewModel.Name</a></h3>
+                                <h4 class="subtitle">@memberViewModel.Name</h4>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+            }
+        }
+    </div>
+</div>

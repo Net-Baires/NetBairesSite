@@ -37,6 +37,9 @@
     <Content Update="Pages\Components\Organizers\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Components\MembersCarousel\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Components\Speakers\Default.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

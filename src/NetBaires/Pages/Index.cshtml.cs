@@ -18,6 +18,7 @@ namespace NetBaires.Pages
         public List<PhotoViewModel> Photos { get; set; } = new List<PhotoViewModel>();
         public EventViewModel Event{ get; set; }
         public List<string> SpeakersToShow { get; set; } = new List<string>();
+        public List<string> LeadsToShow { get; set; } = new List<string>();
 
 
         public IndexModel(IMeetupService meetupService, ApplicationDbContext context)
@@ -27,6 +28,8 @@ namespace NetBaires.Pages
         }
         public async Task OnGet()
         {
+            LeadsToShow = (await _meetupService.GetLeads())?.ToList().Select(x => x.id.ToString()).ToList();
+
             var nextEvent = await _meetupService.GetEvents(1);
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.FirstOrDefault());
@@ -43,11 +46,11 @@ namespace NetBaires.Pages
                 .OrderByDescending(x => x.Date);
             Events.AddRange(eventsToAdd);
             var lastEvents = (await _meetupService.GetEvents(5));
-            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList())).Select(x => new PhotoViewModel(x)).ToList();
+            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList(),9)).Select(x => new PhotoViewModel(x)).ToList();
         }
 
 
-        public async Task OnPostContactUs(ContactUsViewModel contactUs)
+        public void OnPostContactUs(ContactUsViewModel contactUs)
         {
 
         }

@@ -37,8 +37,9 @@ namespace NetBaires.Pages.Events
             var eventDb = _context.Events.Include(x => x.Speakers).FirstOrDefault(x => x.Id == id);
             Event = new EventViewModel(eventDetail);
             Speakers = new List<MemberViewModel>();
-            foreach (var eventDbSpeaker in eventDb.Speakers)
-                Speakers.Add(new MemberViewModel(await _meetupService.GetMemberDetail(eventDbSpeaker.SpeakerId)));
+            if (eventDb != null)
+                foreach (var eventDbSpeaker in eventDb.Speakers)
+                    Speakers.Add(new MemberViewModel(await _meetupService.GetMemberDetail(eventDbSpeaker.SpeakerId)));
 
         }
     }
