@@ -1,22 +1,26 @@
 ﻿@using Models
 @model List<PhotoViewModel>
-<div class="lgx-gallery-area">
-    @foreach (var photoViewModel in Model)
-    {
-        <div class="lgx-gallery-single">
-            <figure>
-                <img style="width:390px;height:190px;" title="@photoViewModel.Id" src="@photoViewModel.HighresLink" alt="Memories one" />
-                <figcaption class="lgx-figcaption">
-                    <div class="lgx-hover-link">
-                        <div class="lgx-vertical">
-                            <a title="@photoViewModel.Id" href="@photoViewModel.PhotoLink">
-                                <i class="fa fa-chain-broken" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </figcaption>
-            </figure>
-        </div> <!--Single photo-->
-    }
+<div class="row">
+    <div class="col-xs-12">
+        <div class="lgx-gallery-area">
+            @foreach (var photoViewModel in Model)
+            {
+                <div class="lgx-gallery-single">
+                    <figure>
+                        <img style="width:390px;height:190px;" title="@photoViewModel.Id" src="@photoViewModel.HighresLink" alt="Memories one" />
+                        <figcaption class="lgx-figcaption">
+                            <div class="lgx-hover-link">
+                                <div class="lgx-vertical">
+                                    <a title="@photoViewModel.Id" href="@photoViewModel.PhotoLink">
+                                        <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div> <!--Single photo-->
+            }
 
+        </div>
+    </div>
 </div>

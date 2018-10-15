@@ -63,33 +63,21 @@
         <!--News END-->
     </div>
 </main>
-
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Image
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Events)
-            {
-                <tr>
-                    <td>
-                        <a asp-page="../Events/Detail" class="btn btn-default" asp-route-id="@item.Id"> @item.Name</a>
-
-                    </td>
-                    <td>
-                        <img style="width:300px" src="@item.ImageUrl" />
-                    </td>
-                    <td></td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
+<section>
+    <div id="lgx-news" class="lgx-news">
+        <div class="lgx-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="lgx-heading">
+                            <h2 class="heading">Eventos en los que @Model.Speaker.Name participo como Orador</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @await Component.InvokeAsync("EventsList", Model.Events)
+                </div>
+            </div><!-- //.CONTAINER -->
+        </div><!-- //.INNER -->
+    </div>
+</section>

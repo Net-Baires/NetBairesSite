@@ -1,30 +1,37 @@
 ﻿@model List<Models.EventViewModel>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Image
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a asp-page="/Events/Detail" class="btn btn-default" asp-route-id="@item.Id"> @item.Name</a>
 
-                </td>
-                <td>
-                    <img style="width:300px" src="@item.ImageUrl" />
-                </td>
-                <td></td>
-            </tr>
-        }
-    </tbody>
-</table>
+@foreach (var eventToShow in Model)
+{
+    <div class="col-xs-12 col-sm-6 col-md-4 ">
+        <div class="lgx-single-news" style="height: 400px;">
+            <figure>
+
+                <a asp-page="/Events/Detail" asp-route-id="@eventToShow.Id">
+                    @if (eventToShow.ImageUrl != null)
+                    {
+                        <img style="width: 330px; height: 170px;" src="@eventToShow.ImageUrl" alt="">
+                    }
+                    else
+                    {
+                        <img style="width: 330px; height: 170px;" src="/images/imagen-no-disponible.jpg" alt="">
+                    }
+                </a>
+            </figure>
+            <div class="single-news-info">
+                <div class="meta-wrapper">
+                    @if (@eventToShow.Date > @DateTime.MinValue)
+                    {
+                        <span>@eventToShow.Date.ToShortDateString()</span>
+                    }
+                    @if (eventToShow.Venue != null)
+                    {
+                        <span><a href="#">@eventToShow.Venue.CompanyName</a></span>
+                    }
+                </div>
+                <h3 class="title"> @eventToShow.Name</h3>
+                <a asp-page="/Events/Detail" asp-route-id="@eventToShow.Id" class="lgx-btn lgx-btn-white lgx-btn-sm"><span>Mas Información</span></a>
+            </div>
+        </div>
+    </div>
+}
 

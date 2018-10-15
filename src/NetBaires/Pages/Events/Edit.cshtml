@@ -1,8 +1,11 @@
 ﻿@page
+@using ViewComponents
 @model NetBaires.Pages.Events.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
+@await Component.InvokeAsync("Breadcrumb", new BreadcrumbViewModel(@Model.Event.Name, "Editar Eventos"))
+
 <div class="panel-group">
     <div class="panel panel-default">
         <form method="POST">

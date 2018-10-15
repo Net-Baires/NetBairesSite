@@ -62,6 +62,8 @@
     <!-- MODERNIZER CSS  -->
     <script src="/assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
+    <link rel="stylesheet" href="/css/slick.css" media="all" />
+
 </head>
 <body class="home">
     <partial name="_CookieConsentPartial" />
@@ -70,7 +72,7 @@
         <!--HEADER-->
         <header>
             <div id="lgx-header" class="lgx-header">
-                <div  class="lgx-header-position lgx-header-position-white lgx-header-position-fixed ">
+                <div class="lgx-header-position lgx-header-position-white lgx-header-position-fixed ">
                     <!--lgx-header-position-fixed lgx-header-position-white lgx-header-fixed-container lgx-header-fixed-container-gap lgx-header-position-white-->
                     <div class="lgx-container-fluid">
                         <!--lgx-container-fluid-->
@@ -84,8 +86,8 @@
                                 </button>
                                 <div class="lgx-logo">
 
-                                    <a href="index.html" class="lgx-scroll">
-                                        <img src="/assets/img/logo.png" alt="Eventhunt Logo" />
+                                    <a asp-page="/Index" class="lgx-scroll">
+                                        <img style="width: 200px;" src="/images/logo-header.png" alt="Net-Baires" />
                                     </a>
                                 </div>
                             </div>
@@ -108,13 +110,14 @@
                                             </ul>
                                         }
                                     <li>
-                                    <li><a class="lgx-scroll" href="#lgx-about">Próximo Meetup</a></li>
+                                    <li><a class="lgx-scroll"  href="#lgx-about">Próximo Meetup</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-speakers">Speakers</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-sponsors">Sponsors</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-photo-gallery">Galeria</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-news">Eventos</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-organizadores">Organizadores</a></li>
                                     <li><a class="lgx-scroll" href="#lgx-travelinfo">Quines Somos</a></li>
+                                    <li>@*<a class="lgx-scroll" asp-page="/Contact">Contactanos</a>*@</li>
                                 </ul>
                             </div><!--/.nav-collapse -->
                         </nav>
@@ -123,16 +126,12 @@
                 </div>
             </div>
         </header>
-        <!--HEADER END-->
-
-    @RenderBody()
-      
-        <!--FOOTER-->
+        @RenderBody()
         <footer>
             <div id="lgx-footer" class="lgx-footer">
                 <!--lgx-footer-white-->
                 <div class="lgx-inner-footer">
-                    <div class="lgx-subscriber-area ">
+                    @*<div class="lgx-subscriber-area ">
                         <div class="container">
                             <div class="lgx-subscriber-inner">
                                 <!--lgx-subscriber-inner-indiv-->
@@ -147,25 +146,25 @@
                                 </form> <!--//.SUBSCRIBE-->
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="container">
                         <div class="lgx-footer-area">
                             <div class="lgx-footer-single">
-                                <a class="logo" asp-page="/Index"><img style="width: 200px;" src="http://germankuber.com.ar/wp-content/uploads/2018/03/logo_netbaires-new.png" alt="Logo"></a>
+                                <a class="logo" asp-page="/Index"><img style="width: 200px;" src="/images/logo.png" alt="Logo"></a>
                             </div> <!--//footer-area-->
                             @*<div class="lgx-footer-single">
-                                <h3 class="footer-title">Venue Location </h3>
-                                <h4 class="date">
-                                    18 - 21 December, 2019
-                                </h4>
-                                <address>
-                                    85 Golden Street, Darlinghurst <br>
-                                    ERP 2019, United States
-                                </address>
-                                <a id="myModalLabel2" data-toggle="modal" data-target="#lgx-modal-map" class="map-link" href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> View Map location</a>
-                            </div>*@
+                                    <h3 class="footer-title">Venue Location </h3>
+                                    <h4 class="date">
+                                        18 - 21 December, 2019
+                                    </h4>
+                                    <address>
+                                        85 Golden Street, Darlinghurst <br>
+                                        ERP 2019, United States
+                                    </address>
+                                    <a id="myModalLabel2" data-toggle="modal" data-target="#lgx-modal-map" class="map-link" href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> View Map location</a>
+                                </div>*@
                             <div class="lgx-footer-single">
-                                <h3 class="footer-title">Social Connection</h3>
+                                <h3 class="footer-title">Redes Sociales</h3>
                                 <p class="text">
                                     Seguinos en nuestros redes<br> para enterarte de todo
                                 </p>
@@ -209,6 +208,7 @@
         </footer>
 
 
+
         <environment include="Development">
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -234,14 +234,7 @@
         <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
         @RenderSection("Scripts", required: false)
-        <script>
-            $(document).ready(function () {
-                $('.table').DataTable({
-                    "order": [[0, "desc"]],
-                    stateSave: true
-                });
-            });
-        </script>
+
         <!--//.LGX SITE CONTAINER-->
         <!-- *** ADD YOUR SITE SCRIPT HERE *** -->
         <!-- JQUERY  -->
@@ -293,5 +286,21 @@
         <!-- CUSTOM SCRIPT  -->
         <script src="/assets/js/custom.script.js"></script>
 
+        <script src="/js/slick.min.js"></script>
+        <script>
+            $('.slider-class').slick({
+                slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 1500
+            });
+            $(document).ready(function () {
+                $('.table').DataTable({
+                    "order": [[0, "desc"]],
+                    stateSave: true
+                });
+
+
+            });
+        </script>
 </body>
 </html>

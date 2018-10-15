@@ -184,12 +184,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        @await Component.InvokeAsync("PhotosPreview", Model.Photos)
+                @await Component.InvokeAsync("PhotosPreview", Model.Photos)
 
-                    </div>
-                </div>
+
                 <div class="section-btn-area sponsor-btn-area">
                     <a class="lgx-btn" href="https://www.instagram.com/netbaires/">Seguinos En Instagram</a>
                 </div>
@@ -212,7 +209,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    @await Component.InvokeAsync("LastEvents")
+                    <div class="slider-class">
+                        @await Component.InvokeAsync("LastEvents")
+                    </div>
                 </div>
                 <div class="section-btn-area">
                     <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/past/">Todos Nuestros Eventos</a>
@@ -240,7 +239,6 @@
     </div>
 </section>
 <!--TRAVEL INFO-->
-
 <!--TRAVEL INFO END-->
 <!--VIDEO-->
 <section>

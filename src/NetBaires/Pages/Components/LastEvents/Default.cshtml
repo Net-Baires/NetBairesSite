@@ -1,20 +1,21 @@
 ﻿@model List<Models.EventViewModel>
-@foreach (var eventToShow in Model)
-{
-    <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="lgx-single-news" style="height: 430px;">
-            <figure>
-                <a href="news-single.html"><img src="@eventToShow.ImageUrl" alt=""></a>
-            </figure>
-            <div class="single-news-info">
-                <div class="meta-wrapper">
-                    <span>@eventToShow.Date.ToShortDateString()</span>
-                    <span><a href="#">@eventToShow.Venue.CompanyName</a></span>
+
+    @foreach (var eventToShow in Model)
+    {
+        <div class="col-xs-12 col-sm-6 col-md-4 ">
+            <div class="lgx-single-news" style="height: 430px;">
+                <figure>
+                    <a href="news-single.html"><img src="@eventToShow.ImageUrl" alt=""></a>
+                </figure>
+                <div class="single-news-info">
+                    <div class="meta-wrapper">
+                        <span>@eventToShow.Date.ToShortDateString()</span>
+                        <span><a href="#">@eventToShow.Venue.CompanyName</a></span>
+                    </div>
+                    <h3 class="title"><a href="news-single.html">  @eventToShow.Name</a></h3>
+                    <a asp-page="./Events/Detail" asp-route-id="@eventToShow.Id" class="lgx-btn lgx-btn-white lgx-btn-sm"><span>Mas Información</span></a>
                 </div>
-                <h3 class="title"><a href="news-single.html">  @eventToShow.Name</a></h3>
-                <a asp-page="./Events/Detail" asp-route-id="@eventToShow.Id" class="lgx-btn lgx-btn-white lgx-btn-sm"><span>Mas Información</span></a>
             </div>
         </div>
-    </div>
-}
+    }
 

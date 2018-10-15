@@ -12,10 +12,9 @@ namespace NetBaires.Pages.Events
 {
     public class DetailModel : PageModel
     {
-        [BindProperty]
         public EventViewModel Event { get; set; } = new EventViewModel();
-        [BindProperty]
         public List<MemberViewModel> Speakers { get; set; } = new List<MemberViewModel>();
+        public List<PhotoViewModel> Photos { get; set; }
 
         private readonly IMeetupService _meetupService;
         private readonly ApplicationDbContext _context;
@@ -33,6 +32,8 @@ namespace NetBaires.Pages.Events
 
         private async Task GenerateDataToShow(string id)
         {
+            Photos = (await _meetupService.GetPhotos(new List<string> { id }, 50)).Select(x => new PhotoViewModel(x)).ToList();
+
             var eventDetail = await _meetupService.GetEventDetail(id);
             var eventDb = _context.Events.Include(x => x.Speakers).FirstOrDefault(x => x.Id == id);
             Event = new EventViewModel(eventDetail);
@@ -42,5 +43,6 @@ namespace NetBaires.Pages.Events
                     Speakers.Add(new MemberViewModel(await _meetupService.GetMemberDetail(eventDbSpeaker.SpeakerId)));
 
         }
+
     }
 }
