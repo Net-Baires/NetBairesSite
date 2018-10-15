@@ -16,8 +16,11 @@ namespace NetBaires.Pages
         private readonly IMeetupService _meetupService;
         private readonly ApplicationDbContext _context;
         public List<EventViewModel> Events { get; set; } = new List<EventViewModel>();
+        public List<SponsorViewModel> Sponsors { get; set; } = new List<SponsorViewModel>();
         public List<PhotoViewModel> Photos { get; set; } = new List<PhotoViewModel>();
-        public EventViewModel Event{ get; set; }
+        public EventViewModel Event { get; set; }
+        public GroupViewModel Group { get; set; }
+
         public List<string> SpeakersToShow { get; set; } = new List<string>();
         public List<string> LeadsToShow { get; set; } = new List<string>();
 
@@ -34,7 +37,7 @@ namespace NetBaires.Pages
             var nextEvent = await _meetupService.GetEvents(1);
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.FirstOrDefault());
-            var SpesakersToShow = _context.Speakers.Include(x=> x.Events).Where(x => x.Events.Any())
+            var SpesakersToShow = _context.Speakers.Include(x => x.Events).Where(x => x.Events.Any())
                 .OrderByDescending(x => x.Events.Count)
                 ?.ToList();
             SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
@@ -50,8 +53,15 @@ namespace NetBaires.Pages
                 .OrderByDescending(x => x.Date);
             Events.AddRange(eventsToAdd);
             var lastEvents = (await _meetupService.GetEvents(5));
-            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList(),9)).Select(x => new PhotoViewModel(x)).ToList();
+            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList(), 9)).Select(x => new PhotoViewModel(x)).ToList();
+            var groupDetail = await _meetupService.GroupDetail();
+            if (groupDetail.results != null)
+            {
+                Group = new GroupViewModel(groupDetail.results.FirstOrDefault());
+                Sponsors = (groupDetail.results.First().sponsors)?.Select(x => new SponsorViewModel(x)).ToList();
+            }
         }
+
 
 
         public void OnPostContactUs(ContactUsViewModel contactUs)

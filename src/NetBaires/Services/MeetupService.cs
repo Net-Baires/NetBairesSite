@@ -34,7 +34,7 @@ namespace NetBaires.Services
             var request = _client.GetAsync($"{GroupName}/events/{id}?key={_meetupOptions.Value.Key}&photo-host=public&fields=featured_photo,photo_album");
             var result = await _cachePolicy.ExecuteAsync(() => request);
 
-            return await result.Content.ReadAsAsync<EventDetail>();
+            return await result.Content.ReadAsAsync<EventDetail>() ?? new EventDetail(); ;
         }
         public async Task<List<EventDetail>> GetEvents(int count, List<string> only = null)
         {
@@ -46,7 +46,7 @@ namespace NetBaires.Services
             var request = _client.GetAsync(urlRequest);
             var result = await _cachePolicy.ExecuteAsync(() => request);
 
-            return await result.Content.ReadAsAsync<List<EventDetail>>();
+            return await result.Content.ReadAsAsync<List<EventDetail>>() ?? new List<EventDetail>(); 
         }
     
         public async Task<List<PhotoDetail>> GetPhotos(List<string> eventsIds = null, int count = 20)
@@ -56,26 +56,28 @@ namespace NetBaires.Services
             if (eventsIds != null)
                 urlRequest += $"&event_id={string.Join(",", eventsIds)}";
             var eventsResults = await _client.GetAsync(urlRequest);
-            return (await eventsResults.Content.ReadAsAsync<PhotoDetailContainer>()).Results;
+            return (await eventsResults.Content.ReadAsAsync<PhotoDetailContainer>())?.Results ?? new List<PhotoDetail>(); 
         }
         public async Task<MemberDetail> GetMemberDetail(string memberId)
         {
             var eventsResults = await _client.GetAsync(
                 $"2/member/{memberId}?key={_meetupOptions.Value.Key}&group_urlname=ny-tech&sign=true");
-            return await eventsResults.Content.ReadAsAsync<MemberDetail>();
+            return await eventsResults.Content.ReadAsAsync<MemberDetail>() ?? new MemberDetail(); ;
         }
 
         public async Task<List<MembersResult>> GetMembersDetail(List<string> membersId)
         {
             var eventsResults = await _client.GetAsync(
                 $"/2/members?key={_meetupOptions.Value.Key}&member_id={string.Join(",", membersId)}&page=9999");
-            return (await eventsResults.Content.ReadAsAsync<MembersRoot>())?.Results?.ToList();
+            var result = (await eventsResults.Content.ReadAsAsync<MembersRoot>())?.Results?.ToList();
+            return result ?? new List<MembersResult>();
         }
         public async Task<List<MemberDetail>> GetLeads()
         {
             var eventsResults = await _client.GetAsync(
                 $"{GroupName}/members?key={_meetupOptions.Value.Key}&&role=leads&page=9999");
-            return await eventsResults.Content.ReadAsAsync<List<MemberDetail>>();
+            return await eventsResults.Content.ReadAsAsync<List<MemberDetail>>()?? new List<MemberDetail>();
+
         }
 
 
@@ -84,13 +86,13 @@ namespace NetBaires.Services
         {
             var eventsResults = await _client.GetAsync(
                 $"{GroupName}/events/{eventId}/attendance?key={_meetupOptions.Value.Key}&sign=true&photo-host=public&page={page}");
-            return await eventsResults.Content.ReadAsAsync<List<Attendance>>();
+            return await eventsResults.Content.ReadAsAsync<List<Attendance>>() ?? new List<Attendance>();
         }
         public async Task<GroupDetail> GroupDetail()
         {
             var eventsResults = await _client.GetAsync(
                 $"/2/groups?key={_meetupOptions.Value.Key}&photo-host=public&group_urlname={GroupName}&fields=past_event_count,sponsors,organizer,members,member_cap,membership_dues,group_photo,photos&page=20");
-            return await eventsResults.Content.ReadAsAsync<GroupDetail>();
+            return await eventsResults.Content.ReadAsAsync<GroupDetail>() ?? new GroupDetail();
         }
 
     }

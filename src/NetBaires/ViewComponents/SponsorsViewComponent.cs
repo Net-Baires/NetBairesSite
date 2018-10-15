@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NetBaires.Models;
@@ -15,10 +16,9 @@ namespace NetBaires.ViewComponents
             _meetupService = meetupService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(List<SponsorViewModel> sponsors)
         {
-            var groupDetail = await _meetupService.GroupDetail();
-            var sponsors = (groupDetail.results.First().sponsors)?.Select(x => new SponsorViewModel(x)).ToList();
+           
             return View(sponsors);
         }
     }
