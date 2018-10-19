@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
 using NetBaires.Data;
 using NetBaires.Models.Meetup;
 using Polly;
@@ -21,7 +22,8 @@ namespace NetBaires.Pages
 
         public bool Ok { get; set; }
         public string Error { get; set; }
-        public JoinSlackModel(IHttpClientFactory httpClientFactory)
+        public JoinSlackModel(IHttpClientFactory httpClientFactory,
+            IOptions<MeetupEndPoint> meetupOptions,)
         {
             _client = httpClientFactory.CreateClient();
             _client.BaseAddress = new Uri("https://slack.com/api/");
@@ -36,7 +38,7 @@ namespace NetBaires.Pages
 
                 var dict = new Dictionary<string, string>
                 {
-                    {"token", "xoxp-76018477639-75960322915-79210432739-a4814114a4"},
+                    {"token", "xoxp-76018477639-75960322915-459992572979-5d3ebd01273d358bd97c5eb2082c3763"},
                     {"email", Email}
                 };
                 var client = new HttpClient();

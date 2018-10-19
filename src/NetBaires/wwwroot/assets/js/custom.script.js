@@ -476,60 +476,60 @@
             return regex.test(email);
         }
 
-        $('form.lgx-subscribe-form').on('submit', function (evnt) {
-            evnt.preventDefault();
-            //  console.log(lgx_path);
-            // console.log('subs submit');
-            var $subform = $(this);
-            var emailInput = $('form.lgx-subscribe-form').find('input#subscribe');
-            if (isEmail(emailInput.val())) {
-                // console.log('ok');
-                $.ajax({
-                    url: lgx_path + '/assets/php/subscribe.php',
-                    type: 'post',
-                    data: {'email': emailInput.val().toLowerCase()},
-                    beforeSubmit: function (argument) {
-                        // body...
-                    },
-                    success: function (ajaxResponse) {
+        //$('form.lgx-subscribe-form').on('submit', function (evnt) {
+        //    evnt.preventDefault();
+        //    //  console.log(lgx_path);
+        //    // console.log('subs submit');
+        //    var $subform = $(this);
+        //    var emailInput = $('form.lgx-subscribe-form').find('input#subscribe');
+        //    if (isEmail(emailInput.val())) {
+        //        // console.log('ok');
+        //        $.ajax({
+        //            url: lgx_path + '/assets/php/subscribe.php',
+        //            type: 'post',
+        //            data: {'email': emailInput.val().toLowerCase()},
+        //            beforeSubmit: function (argument) {
+        //                // body...
+        //            },
+        //            success: function (ajaxResponse) {
 
-                        var ajaxResponse = $.parseJSON(ajaxResponse);
-                        // console.log(ajaxResponse);
+        //                var ajaxResponse = $.parseJSON(ajaxResponse);
+        //                // console.log(ajaxResponse);
 
-                        $('#lgx-subalert').addClass("alert alert-success lgx-sub-alert").html(ajaxResponse.message);
+        //                $('#lgx-subalert').addClass("alert alert-success lgx-sub-alert").html(ajaxResponse.message);
 
-                        try {
-                            var ajaxResponse = $.parseJSON(ajaxResponse);
-                            if (!ajaxResponse.error) {
-                                emailInput.css('color', '#0f0');
-                            } else {
-                                emailInput.removeAttr('style'); //css('color', '#f00');
-                                throw ajaxResponse.message;
-                            }
-                            //alert( ajaxResponse.message );
-                        } catch (e) {
-                            // e.message;
-                            // alert(e.message );
+        //                try {
+        //                    var ajaxResponse = $.parseJSON(ajaxResponse);
+        //                    if (!ajaxResponse.error) {
+        //                        emailInput.css('color', '#0f0');
+        //                    } else {
+        //                        emailInput.removeAttr('style'); //css('color', '#f00');
+        //                        throw ajaxResponse.message;
+        //                    }
+        //                    //alert( ajaxResponse.message );
+        //                } catch (e) {
+        //                    // e.message;
+        //                    // alert(e.message );
 
-                        }
-                    },
-                    error: function (argument) {
-                        var ajaxResponse = $.parseJSON(ajaxResponse);
-                        $('#lgx-subalert').addClass("alert alert-danger lgx-sub-alert").html(ajaxResponse.message);
-                        // body...
-                    }
-                });
-                $subform[0].reset();
-            } else {
-                emailInput.css('color', '#f00');
-                return false;
-            }
-        });
+        //                }
+        //            },
+        //            error: function (argument) {
+        //                var ajaxResponse = $.parseJSON(ajaxResponse);
+        //                $('#lgx-subalert').addClass("alert alert-danger lgx-sub-alert").html(ajaxResponse.message);
+        //                // body...
+        //            }
+        //        });
+        //        $subform[0].reset();
+        //    } else {
+        //        emailInput.css('color', '#f00');
+        //        return false;
+        //    }
+        //});
 
-        $('form.subscribe-form input#subscribe').on('keyup', function (evnt) {
-            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            this.style.color = (isEmail($(this).val())) ? '#f5832b' : '#f00';
-        });
+        //$('form.subscribe-form input#subscribe').on('keyup', function (evnt) {
+        //    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        //    this.style.color = (isEmail($(this).val())) ? '#f5832b' : '#f00';
+        //});
 
         /* ==========================================================================
          SUBSCRIPTION & AJAX SUBMISSION
