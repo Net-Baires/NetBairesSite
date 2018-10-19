@@ -15,6 +15,8 @@ namespace NetBaires.Pages
     public class JoinSlackModel : PageModel
     {
         private readonly HttpClient _client;
+        private readonly IOptions<SlackEndPoint> _slackEndPoint;
+
         [BindProperty]
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -23,10 +25,11 @@ namespace NetBaires.Pages
         public bool Ok { get; set; }
         public string Error { get; set; }
         public JoinSlackModel(IHttpClientFactory httpClientFactory,
-            IOptions<MeetupEndPoint> meetupOptions,)
+            IOptions<SlackEndPoint> slackEndPoint)
         {
             _client = httpClientFactory.CreateClient();
             _client.BaseAddress = new Uri("https://slack.com/api/");
+            _slackEndPoint = slackEndPoint;
         }
         public void OnGet()
         {
@@ -38,11 +41,11 @@ namespace NetBaires.Pages
 
                 var dict = new Dictionary<string, string>
                 {
-                    {"token", "xoxp-76018477639-75960322915-459992572979-5d3ebd01273d358bd97c5eb2082c3763"},
+                    {"token", _slackEndPoint.Value.Token},
                     {"email", Email}
                 };
                 var client = new HttpClient();
-                var req = new HttpRequestMessage(HttpMethod.Post, "https://slack.com/api/users.admin.invite")
+                var req = new HttpRequestMessage(HttpMethod.Post, _slackEndPoint.Value.Url)
                 {
                     Content = new FormUrlEncodedContent(dict)
                 };
@@ -67,6 +70,10 @@ namespace NetBaires.Pages
                             Error = "Ocurrio un Error, Notifique a nuestro admin!";
                             break;
                     }
+                }
+                else
+                {
+
                 }
 
             }

@@ -54,6 +54,7 @@ namespace NetBaires
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<MeetupEndPoint>(Configuration.GetSection("MeetupEndPoint"));
             services.Configure<TwitterApi>(Configuration.GetSection("TwitterApi"));
+            services.Configure<SlackEndPoint>(Configuration.GetSection("SlackEndPoint"));
             
             services.AddScoped<IMeetupService, MeetupService>();
        
