@@ -121,6 +121,7 @@ namespace NetBaires.Pages.Events
                 _context.Sponsors.Add(new SponsorDb
                 {
                     Name =  x.Name,
+                    LogoUrl = x.LogoUrlHigh,
                     Id =  x.Name
                 });
             });

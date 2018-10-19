@@ -8,6 +8,8 @@ namespace NetBaires.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Id { get; set; }
         public string Name { get; set; }
+        public string LogoUrl { get; set; }
+        public string LogoUrlHigh { get; set; }
         public List<SponsorEvent> Events { get; set; }
     }
 }

@@ -37,7 +37,9 @@ namespace NetBaires.Pages.Sponsors
                 .ThenInclude(s => s.Sponsor)
                 .Where(x => x.Sponsors.Any(s => s.SponsorId == id))
                 .ToList();
-            Sponsor = (await _meetupService.GroupDetail()).results[0].sponsors?.Select(x => new SponsorViewModel(x))
+            var groupDetail = (await _meetupService.GroupDetail()).results[0];
+            var sponsor = _context.Sponsors.Where(x => x.Name == id).FirstOrDefault();
+            Sponsor = (await _meetupService.GroupDetail()).results[0].sponsors?.Select(x => new SponsorViewModel(x, sponsor))
                 .ToList()
                 .FirstOrDefault(s => s.Name == id);
             Events = events?.Select(x => new EventViewModel(x)).ToList();
