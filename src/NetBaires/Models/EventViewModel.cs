@@ -43,8 +43,8 @@ namespace NetBaires.Models
         public string Address { get; set; }
         public string CompanyName { get; set; }
         public string City { get; set; }
-        public float Lat { get; set; }
-        public float Long { get; set; }
+        public string Lat { get; set; }
+        public string Long { get; set; }
         public string Country { get; set; }
 
         public VenueViewModel(Venue venue)
@@ -54,8 +54,8 @@ namespace NetBaires.Models
                 Address = venue?.address_1;
                 CompanyName = venue?.name;
                 City = venue?.city;
-                Lat = venue.lat;
-                Long = venue.lon;
+                Lat = venue.lat.ToString().Replace(",",".");
+                Long = venue.lon.ToString().Replace(",", ".");
                 Country = venue?.localized_country_name;
             }
 

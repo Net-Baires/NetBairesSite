@@ -43,7 +43,11 @@
                                 <h2 class="title">Net-Baires</h2>
                                 @if (Model.Event != null)
                                 {
-                                    <h3 class="location"><i class="fa fa-building"></i> @Model.Event.Venue.CompanyName</h3>
+                                    <h3 class="location">
+                                        <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Model.Event.Venue.Lat,@Model.Event.Venue.Long">
+                                            <i class="fa fa-building"></i> @Model.Event.Venue.CompanyName
+                                        </a>
+                                    </h3>
                                     <h3 class="location"><i class="fa fa-map-marker"></i> @Model.Event.Venue.City, @Model.Event.Venue.Country</h3>
                                     <h3 class="date"><i class="fa fa-calendar"></i> @Model.Event.Date.ToString("dddd, dd MMMM yyyy HH:mm:ss")</h3>
                                     <div class="action-area">
@@ -85,7 +89,9 @@
                             <div class="lgx-heading">
                                 <h2 class="heading">@Model.Event.Name</h2>
                                 <h3 class="subheading">@Model.Event.Date.ToString("dddd, dd MMMM yyyy HH:mm:ss")</h3>
-                                <h3 class="subheading">@Model.Event.Venue.CompanyName</h3>
+                                <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Model.Event.Venue.Lat,@Model.Event.Venue.Long">
+                                    <h3 class="subheading">@Model.Event.Venue.CompanyName</h3>
+                                </a>
                             </div>
                             <div class="lgx-about-content">
                                 <p class="text">
@@ -252,72 +258,72 @@
         </div>
     </section>
 }
-    <!--TRAVEL INFO-->
-    <!--TRAVEL INFO END-->
-    <!--VIDEO-->
-    <section>
-        <div id="lgx-video" class="lgx-video">
-            <div class="lgx-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--<h2 class="lgx-video-title"><span>Watch Our Promo video!</span>How to make an online order</h2>-->
-                            <div class="lgx-video-area">
-                                <figure>
-                                    <figcaption>
-                                        <div class="video-icon">
-                                            <div class="lgx-vertical">
-                                                <a id="myModalLabel" class="icon" href="#" data-toggle="modal" data-target="#lgx-modal">
-                                                    <i class="fa fa-play " aria-hidden="true"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                                <!-- Modal-->
-                                <div id="lgx-modal" class="modal fade lgx-modal">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <iframe width="1280" height="720" src="https://www.youtube.com/embed/38818Yb9DVQ" frameborder="0" allowfullscreen></iframe>
-
-                                            </div>
+<!--TRAVEL INFO-->
+<!--TRAVEL INFO END-->
+<!--VIDEO-->
+<section>
+    <div id="lgx-video" class="lgx-video">
+        <div class="lgx-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!--<h2 class="lgx-video-title"><span>Watch Our Promo video!</span>How to make an online order</h2>-->
+                        <div class="lgx-video-area">
+                            <figure>
+                                <figcaption>
+                                    <div class="video-icon">
+                                        <div class="lgx-vertical">
+                                            <a id="myModalLabel" class="icon" href="#" data-toggle="modal" data-target="#lgx-modal">
+                                                <i class="fa fa-play " aria-hidden="true"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                </div> <!-- //.Modal-->
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- //.CONTAINER -->
-            </div><!-- //.INNER -->
-        </div>
-    </section>
-    <section>
-        <div id="lgx-travelinfo" class="lgx-travelinfo">
-            <div class="lgx-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="lgx-heading">
-                                <h2 class="heading">@Model.Group.Name</h2>
-                                <h3 class="subheading">Somos la Comunidad de desarrolladores .Net mas grande de Argentina, con <b>@Model.Group.Members</b>  @Model.Group.Who </h3>
-                            </div>
-                        </div>
-                        <!--//main COL-->
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            @Html.Raw(Model.Group.Description)
+                                </figcaption>
+                            </figure>
+                            <!-- Modal-->
+                            <div id="lgx-modal" class="modal fade lgx-modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <iframe width="1280" height="720" src="https://www.youtube.com/embed/38818Yb9DVQ" frameborder="0" allowfullscreen></iframe>
 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- //.Modal-->
                         </div>
                     </div>
-                    <!--//.ROW-->
                 </div>
-                <!-- //.CONTAINER -->
+            </div><!-- //.CONTAINER -->
+        </div><!-- //.INNER -->
+    </div>
+</section>
+<section>
+    <div id="lgx-travelinfo" class="lgx-travelinfo">
+        <div class="lgx-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="lgx-heading">
+                            <h2 class="heading">@Model.Group.Name</h2>
+                            <h3 class="subheading">Somos la Comunidad de desarrolladores .Net mas grande de Argentina, con <b>@Model.Group.Members</b>  @Model.Group.Who </h3>
+                        </div>
+                    </div>
+                    <!--//main COL-->
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        @Html.Raw(Model.Group.Description)
+
+                    </div>
+                </div>
+                <!--//.ROW-->
             </div>
+            <!-- //.CONTAINER -->
         </div>
-    </section>
-    <!--//.VIDEO END-->
+    </div>
+</section>
+<!--//.VIDEO END-->
