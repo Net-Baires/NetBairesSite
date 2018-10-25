@@ -39,14 +39,15 @@ namespace NetBaires.Pages.Twitter
                 _twitterApOption.Value.ConsumerSecret,
                 _twitterApOption.Value.UserAccessToken,
                 _twitterApOption.Value.UserAccessSecret);
-
+            var currentTweet = Tweet.GetTweet(TweetId);
             var twitters = Tweet.GetRetweets(TweetId);
             //var t222wis = Timeline.GetMentionsTimeline();
             Tweets = twitters.Select(x => new TweetViewModel(x)).ToList();
+            Win = new TweetViewModel();
         }
         public void OnPostRaffle()
         {
-            Win = Tweets[new Random().Next(0, Tweets.Count)];
+            Win = Tweets[new Random(Guid.NewGuid().GetHashCode()).Next(0, Tweets.Count)];
         }
 
         

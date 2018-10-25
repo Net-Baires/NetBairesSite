@@ -39,7 +39,7 @@ namespace NetBaires.Pages.Speakers
                                              .FirstOrDefault(x => x.Id == id);
             Speaker = new MemberViewModel(eventDetail);
             Events = new List<EventViewModel>();
-            foreach (var eventDbSpeaker in speakerDb.Events)
+            foreach (var eventDbSpeaker in speakerDb.Events?.OrderByDescending(x=> x.EventId))
                 Events.Add(new EventViewModel(eventDbSpeaker.Event));
 
         }

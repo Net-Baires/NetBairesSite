@@ -1,67 +1,94 @@
 ﻿@page
+@using ViewComponents
 @model Twitter.DetailModel
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = "Twitter Prize";
 }
-<form method="POST">
-    <div class="form-group">
-        <label for="exampleInputEmail1">ID</label>
-        <input type="number" asp-for="TweetId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    </div>
-    <input type="submit" class="btn btn-success" asp-page-handler="AddTweetId" value="Cargar" />
+@await Component.InvokeAsync("Breadcrumb", new BreadcrumbViewModel("Twitter Prize", "Twitter Prize"))
+<main>
+    <div class="lgx-page-wrapper">
 
-    @if (Model.Tweets.Any())
-    {
-        if (Model.Win.CreatedByName != null)
-        {
-            <div class="panel panel-default">
-                <div class="panel-body">Ganador !!!</div>
-                <div class="form-group">
-                    @Html.HiddenFor(x => Model.Win.CreatedByScreenProfileImageUrlFullSize)
-                    <img style="width: 120px" src="@Model.Win.CreatedByScreenProfileImageUrlFullSize" />
-                </div>
-                <div class="form-group">
-                    @Html.HiddenFor(x => Model.Win.CreatedByName)
-                    @Html.DisplayFor(x => Model.Win.CreatedByName)
-                </div>
-            </div>
-        }
-        <div class="panel panel-default">
-            <div class="panel-body">Tweets</div>
-            <input type="submit" class="btn btn-success" asp-page-handler="Raffle" value="Sortear" />
 
-            <div class="form-group">
+        <div class="container">
+            <div class="row">
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Url</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < Model.Tweets.Count; i++)
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tweet ID</label>
+                            <input type="number" asp-for="TweetId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" asp-page-handler="AddTweetId" value="Cargar" />
+                        </div>
+
+                        @if (Model.Tweets.Any())
                         {
-                            <tr>
-                                <th scope="row">
-                                    @Html.HiddenFor(x => Model.Tweets[i].CreatedByScreenProfileImageUrlFullSize)
-                                    <img style="width: 120px" src="@Model.Tweets[i].CreatedByScreenProfileImageUrlFullSize" />
-                                </th>
-                                <td>
-                                    @Html.HiddenFor(x => Model.Tweets[i].CreatedByName)
-                                    @Html.DisplayFor(x => Model.Tweets[i].CreatedByName)
-                                </td>
-                                <td>
-                                    @Html.HiddenFor(x => Model.Tweets[i].Url)
-                                    @Html.DisplayFor(x => Model.Tweets[i].Url)
-                                </td>
-                            </tr>
+                            if (Model.Win.CreatedByName != null)
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Ganador !!!</div>
+
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            @Html.HiddenFor(x => Model.Win.CreatedByScreenProfileImageUrlFullSize)
+                                            <img style="width: 120px" src="@Model.Win.CreatedByScreenProfileImageUrlFullSize" />
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.HiddenFor(x => Model.Win.CreatedByName)
+                                            @Html.DisplayFor(x => Model.Win.CreatedByName)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Tweets List</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-success" asp-page-handler="Raffle" value="Sortear" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        <table style="width:100%" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Url</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @for (int i = 0; i < Model.Tweets.Count; i++)
+                                                {
+                                                    <tr>
+                                                        <th scope="row">
+                                                            @Html.HiddenFor(x => Model.Tweets[i].CreatedByScreenProfileImageUrlFullSize)
+                                                            <img style="width: 120px" src="@Model.Tweets[i].CreatedByScreenProfileImageUrlFullSize" />
+                                                        </th>
+                                                        <td>
+                                                            @Html.HiddenFor(x => Model.Tweets[i].CreatedByName)
+                                                            @Html.DisplayFor(x => Model.Tweets[i].CreatedByName)
+                                                        </td>
+                                                        <td>
+                                                            @Html.HiddenFor(x => Model.Tweets[i].Url)
+                                                            <a href="@Model.Tweets[i].Url">
+                                                                @Html.DisplayFor(x => Model.Tweets[i].Url)
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         }
 
-                    </tbody>
-                </table>
+
+                    </form>
+                </div>
             </div>
         </div>
-    }
-</form>
+    </div>
+</main>
