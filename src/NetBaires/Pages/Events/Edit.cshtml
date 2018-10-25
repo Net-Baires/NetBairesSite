@@ -6,148 +6,155 @@
 }
 @await Component.InvokeAsync("Breadcrumb", new BreadcrumbViewModel(@Model.Event.Name, "Editar Eventos"))
 
-<div class="panel-group">
-    <div class="panel panel-default">
-        <form method="POST">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse1">Evento</a>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse">
+<div class="container">
+    <div class="row">
 
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="panel-group">
                 <div class="panel panel-default">
-                    <div class="panel-heading"></div>
+                    <form method="POST">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse1">Evento</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse">
 
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <h3>Nombre</h3>
-                            <h5>@Model.Event.Name</h5>
-                        </div>
-                        <div class="form-group">
-                            <h3>Nombre</h3>
-                            <h5>@Model.Event.Date.ToShortDateString()</h5>
-                        </div>
-                        <div class="form-group">
-                            <h3>Imagen</h3>
-                            <img style="width: 600px" src="@Model.Event.ImageUrl" />
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <h3>Descripción</h3>
-                                    @Html.Raw(@Model.Event.Description)
+                            <div class="panel panel-default">
+                                <div class="panel-heading"></div>
+
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <h3>Nombre</h3>
+                                        <h5>@Model.Event.Name</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <h3>Nombre</h3>
+                                        <h5>@Model.Event.Date.ToShortDateString()</h5>
+                                    </div>
+                                    <div class="form-group">
+                                        <h3>Imagen</h3>
+                                        <img style="width: 600px" src="@Model.Event.ImageUrl" />
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <h3>Descripción</h3>
+                                                @Html.Raw(@Model.Event.Description)
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse2">Speakers</a>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Speakers</div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <br />
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Imagen</th>
-                                        <th scope="col">Speaker</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model.Speakers != null)
-                                    {
-                                        @for (int i = 0; i < Model.Speakers.Count; i++)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @Html.HiddenFor(x => Model.Speakers[i].Id)
-                                                    @Html.DisplayFor(x => Model.Speakers[i].Id)
-                                                </td>
-                                                <td>
-                                                    @Html.HiddenFor(x => Model.Speakers[i].Name)
-                                                    @Html.DisplayFor(x => Model.Speakers[i].Name)
-                                                </td>
-
-                                                <td>
-                                                    <img style="width: 50px" src="@Model.Speakers[i].ImageUrl" />
-                                                </td>
-                                                <td style="text-align: center">
-                                                    @Html.CheckBoxFor(x => Model.Speakers[i].IsSpeaker, new { @class = "form-control" })
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse2">Speakers</a>
+                            </h4>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" href="#collapse3">Sponsors</a>
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Sponsors</div>
+                        <div id="collapse2" class="panel-collapse">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Speakers</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <br />
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Imagen</th>
+                                                    <th scope="col">Speaker</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Speakers != null)
+                                                {
+                                                    @for (int i = 0; i < Model.Speakers.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.HiddenFor(x => Model.Speakers[i].Id)
+                                                                @Html.DisplayFor(x => Model.Speakers[i].Id)
+                                                            </td>
+                                                            <td>
+                                                                @Html.HiddenFor(x => Model.Speakers[i].Name)
+                                                                @Html.DisplayFor(x => Model.Speakers[i].Name)
+                                                            </td>
 
-                    <div class="panel-body">
-
-                        @Html.HiddenFor(x => x.Event.ImageUrl)
-                        @Html.HiddenFor(x => x.Event.Name)
-                        @Html.HiddenFor(x => x.Event.Id)
-                        <div class="form-group">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Info</th>
-                                        <th scope="col">Logo</th>
-                                        <th scope="col">Seleccionado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model.Sponsors != null)
-                                    {
-
-                                        @for (int i = 0; i < Model.Sponsors.Count; i++)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @Html.HiddenFor(x => Model.Sponsors[i].Name)
-                                                    @Html.DisplayFor(x => Model.Sponsors[i].Name)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(x => Model.Sponsors[i].Info)
-                                                </td>
-                                                <td>
-                                                    <img style="width: 50px" src="@Model.Sponsors[i].ImageUrl" />
-                                                </td>
-                                                <td style="text-align: center">
-                                                    @Html.CheckBoxFor(x => Model.Sponsors[i].Selected, new { @class = "form-control" })
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
+                                                            <td>
+                                                                <img style="width: 50px" src="@Model.Speakers[i].ImageUrl" />
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @Html.CheckBoxFor(x => Model.Speakers[i].IsSpeaker, new { @class = "form-control" })
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#collapse3">Sponsors</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Sponsors</div>
+
+                                <div class="panel-body">
+
+                                    @Html.HiddenFor(x => x.Event.ImageUrl)
+                                    @Html.HiddenFor(x => x.Event.Name)
+                                    @Html.HiddenFor(x => x.Event.Id)
+                                    <div class="form-group">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Info</th>
+                                                    <th scope="col">Logo</th>
+                                                    <th scope="col">Seleccionado</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.Sponsors != null)
+                                                {
+
+                                                    @for (int i = 0; i < Model.Sponsors.Count; i++)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.HiddenFor(x => Model.Sponsors[i].Name)
+                                                                @Html.DisplayFor(x => Model.Sponsors[i].Name)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(x => Model.Sponsors[i].Info)
+                                                            </td>
+                                                            <td>
+                                                                <img style="width: 50px" src="@Model.Sponsors[i].ImageUrl" />
+                                                            </td>
+                                                            <td style="text-align: center">
+                                                                @Html.CheckBoxFor(x => Model.Sponsors[i].Selected, new { @class = "form-control" })
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-success" asp-page-handler="" value="Cargar" />
+                    </form>
                 </div>
+
             </div>
-            <input type="submit" class="btn btn-success" asp-page-handler="" value="Cargar" />
-        </form>
+        </div>
     </div>
-
 </div>
