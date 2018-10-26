@@ -112,6 +112,8 @@ namespace NetBaires
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

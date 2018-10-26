@@ -1,4 +1,4 @@
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
     padding-top: 50px;
@@ -34,21 +34,4 @@ body {
     .carousel-caption {
         display: none;
     }
-}
-
-
-.lgx-inner-footer {
-    background: rgba(25,40,56,.95) !important;
-}
-
-.lgx-footer {
-    background-image: url('/images/footer.jpg') !important;
-}
-
-.lgx-photo-gallery-black {
-    background-image: url('/images/43103028_2110364265882560_7139727438417756160_n.jpg') !important;
-}
-
-.lgx-video {
-    background-image: url('/images/20180920_191650.jpg') !important;
 }

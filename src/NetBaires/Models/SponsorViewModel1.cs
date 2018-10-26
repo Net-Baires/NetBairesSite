@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NetBaires.Data;
+﻿using NetBaires.Data;
 using NetBaires.Models.Meetup;
 
 namespace NetBaires.Models

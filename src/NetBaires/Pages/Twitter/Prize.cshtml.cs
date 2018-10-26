@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
 using NetBaires.Models;
 using Tweetinvi;
-using Tweetinvi.Parameters;
 
 namespace NetBaires.Pages.Twitter
 {

@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
-using NetBaires.Data;
-using NetBaires.Models.Meetup;
-using Polly;
 
 namespace NetBaires.Pages
 {
