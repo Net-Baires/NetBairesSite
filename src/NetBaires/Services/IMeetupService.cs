@@ -6,7 +6,7 @@ namespace NetBaires.Services
 {
     public interface IMeetupService
     {
-        Task<List<EventDetail>> GetEvents(int count, List<string> only = null);
+        Task<List<EventDetail>> GetEvents(int count, string status = "past,upcoming", List<string> only = null);
         Task<EventDetail> GetEventDetail(string id);
         Task<MemberDetail> GetMemberDetail(string memberId);
         Task<List<MembersResult>> GetMembersDetail(List<string> membersId);

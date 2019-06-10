@@ -34,9 +34,9 @@ namespace NetBaires.Pages
         {
             LeadsToShow = (await _meetupService.GetLeads())?.ToList().Select(x => x.id.ToString()).ToList();
 
-            var nextEvent = await _meetupService.GetEvents(1);
+            var nextEvent = await _meetupService.GetEvents(5, "upcoming");
             if (nextEvent.Any())
-                Event = new EventViewModel(nextEvent.FirstOrDefault());
+                Event = new EventViewModel(nextEvent.LastOrDefault());
             var SpesakersToShow = _context.Speakers.Include(x => x.Events).Where(x => x.Events.Any())
                 .OrderByDescending(x => x.Events.Count)
                 ?.ToList();

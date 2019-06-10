@@ -36,10 +36,10 @@ namespace NetBaires.Services
 
             return await result.Content.ReadAsAsync<EventDetail>() ?? new EventDetail(); ;
         }
-        public async Task<List<EventDetail>> GetEvents(int count, List<string> only = null)
+        public async Task<List<EventDetail>> GetEvents(int count, string status = "past,upcoming", List<string> only = null)
         {
             var urlRequest =
-                $"{GroupName}/events?key={_meetupOptions.Value.Key}&photo-host=public&page={count}&fields=featured_photo&desc=true&status=past,upcoming";
+                $"{GroupName}/events?key={_meetupOptions.Value.Key}&photo-host=public&page={count}&fields=featured_photo&desc=true&status={status}";
             if (only != null)
                 urlRequest += $"&only={string.Join(",", only)}";
 
