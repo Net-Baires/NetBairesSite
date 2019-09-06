@@ -22,7 +22,7 @@ namespace NetBaires.Pages
         public GroupViewModel Group { get; set; }
 
         public List<string> SpeakersToShow { get; set; } = new List<string>();
-        public List<string> LeadsToShow { get; set; } = new List<string>();
+        public List<MemberViewModel> LeadsToShow { get; set; } = new List<MemberViewModel>();
 
 
         public IndexModel(IMeetupService meetupService, ApplicationDbContext context)
@@ -32,33 +32,29 @@ namespace NetBaires.Pages
         }
         public async Task OnGet()
         {
-            LeadsToShow = (await _meetupService.GetLeads())?.ToList().Select(x => x.id.ToString()).ToList();
-
+            var idsLeadsToShow = (await _meetupService.GetLeads())?.ToList().Select(x => x.id.ToString()).ToList();
+            if (idsLeadsToShow.Any())
+            {
+                var memebers = await _meetupService.GetMembersDetail(idsLeadsToShow);
+                foreach (var speaker in memebers)
+                    LeadsToShow.Add(new MemberViewModel(speaker));
+            }
             var nextEvent = await _meetupService.GetEvents(5, "upcoming");
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.LastOrDefault());
-            var SpesakersToShow = _context.Speakers.Include(x => x.Events).Where(x => x.Events.Any())
-                .OrderByDescending(x => x.Events.Count)
-                ?.ToList();
-            SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
-                .OrderByDescending(x => x.Events.Count)
-                .Take(6)
-                ?.ToList()
-                .Select(x => x.Id).ToList();
-
-            var events = await _meetupService.GetEvents(500);
+            SpeakersToShow = new List<string>();
+            var events = await _meetupService.GetEvents(5);
             var eventsToAdd = events?.Select(x =>
                     new EventViewModel(x))
                 .ToList()
                 .OrderByDescending(x => x.Date);
             Events.AddRange(eventsToAdd);
-            var lastEvents = (await _meetupService.GetEvents(5));
-            Photos = (await _meetupService.GetPhotos(lastEvents.Select(x => x.id).ToList(), 9)).Select(x => new PhotoViewModel(x)).ToList();
+            Photos = (await _meetupService.GetPhotos(events.Select(x => x.id).ToList(), 9)).Select(x => new PhotoViewModel(x)).ToList();
             var groupDetail = await _meetupService.GroupDetail();
             if (groupDetail.results != null)
             {
                 Group = new GroupViewModel(groupDetail.results.FirstOrDefault());
-                Sponsors = _context.Sponsors.ToList()?.Select(x => new SponsorViewModel(x)).ToList();
+                Sponsors = new List<SponsorViewModel>();
             }
         }
 
