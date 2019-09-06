@@ -64,8 +64,7 @@ namespace NetBaires.Services
             return await result.Content.ReadAsAsync<EventDetail>() ?? new EventDetail(); ;
         }
         public async Task<List<EventDetail>> GetEvents(int count, string status = "past,upcoming", List<string> only = null)
-        {
-            await RefreshTokenAsync();
+        {    
             var urlRequest =
                 $"{GroupName}/events?key={_meetupOptions.Value.Key}&photo-host=public&page={count}&fields=featured_photo&desc=true&status={status}";
             if (only != null)
@@ -81,9 +80,12 @@ namespace NetBaires.Services
 
             var result = await _cachePolicy.ExecuteAsync(() => request);
             if (result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
                 await RefreshTokenAsync();
-            request = GenerateGetCall(urlRequest);
-            return  await _cachePolicy.ExecuteAsync(() => request);
+                request = GenerateGetCall(urlRequest);
+                return await _cachePolicy.ExecuteAsync(() => request);
+            }
+            return result;
         }
 
         private Task<HttpResponseMessage> GenerateGetCall(string urlRequest)

@@ -32,28 +32,4 @@ namespace NetBaires.ViewComponents
             return View(speakersToShow);
         }
     }
-    public class MembersCarouselViewComponent : ViewComponent
-    {
-        private readonly IMeetupService _meetupService;
-        private readonly ApplicationDbContext _context;
-
-        public MembersCarouselViewComponent(IMeetupService meetupService, ApplicationDbContext context)
-        {
-            _meetupService = meetupService;
-            _context = context;
-        }
-
-        public async Task<IViewComponentResult> InvokeAsync(List<string> speakersToShowIds)
-        {
-            var speakersToShow = new List<MemberViewModel>();
-
-            if (speakersToShowIds.Any())
-            {
-                var memebers = await _meetupService.GetMembersDetail(speakersToShowIds);
-                foreach (var speaker in memebers)
-                    speakersToShow.Add(new MemberViewModel(speaker));
-            }
-            return View(speakersToShow);
-        }
-    }
 }

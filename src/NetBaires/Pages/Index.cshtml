@@ -215,11 +215,11 @@
                 </div>
                 <div class="row visible-md visible-lg">
                     <div class="slider-class ">
-                        @await Component.InvokeAsync("LastEvents")
+                        @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
                     </div>
                 </div>
                 <div class="row visible-xs visible-sm">
-                    @await Component.InvokeAsync("LastEvents")
+                    @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
                 </div>
                 <div class="section-btn-area">
                     <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/past/">Todos Nuestros Eventos</a>
