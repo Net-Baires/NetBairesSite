@@ -41,13 +41,12 @@ namespace NetBaires.Pages
                     {"token", _slackEndPoint.Value.Token},
                     {"email", Email}
                 };
-                var client = new HttpClient();
                 var req = new HttpRequestMessage(HttpMethod.Post, _slackEndPoint.Value.Url)
                 {
                     Content = new FormUrlEncodedContent(dict)
                 };
                 req.Headers.Add("Accept", "application/json");
-                var result = await client.SendAsync(req);
+                var result = await _client.SendAsync(req);
                 var slackResponse = await result.Content.ReadAsAsync<SlackInviteResponse>();
                 Ok = slackResponse.ok;
                 if (!Ok)
@@ -57,6 +56,9 @@ namespace NetBaires.Pages
                         case "already_invited":
                             Error = "Este email ya se encuentra invitado a nuestro Slack";
                             break;
+                        case "already_in_team_invited_user":
+                            Error = "Este email ya se encuentra invitado a nuestro Slack";
+                            break;                            
                         case "invalid_email":
                             Error = "El email que esta ingresando es incorrecto";
                             break;
