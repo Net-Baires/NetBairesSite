@@ -42,7 +42,14 @@ namespace NetBaires.Pages
             var nextEvent = await _meetupService.GetEvents(5, "upcoming");
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.LastOrDefault());
-            SpeakersToShow = new List<string>();
+            var SpesakersToShow = _context.Speakers.Include(x => x.Events).Where(x => x.Events.Any())
+                                          .OrderByDescending(x => x.Events.Count)
+                                          ?.ToList();
+           SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
+                                                .OrderByDescending(x => x.Events.Count)
+                                                .Take(6)
+                                                ?.ToList()
+                                                .Select(x => x.Id).ToList();
             var events = await _meetupService.GetEvents(5);
             var eventsToAdd = events?.Select(x =>
                     new EventViewModel(x))
@@ -54,7 +61,7 @@ namespace NetBaires.Pages
             if (groupDetail.results != null)
             {
                 Group = new GroupViewModel(groupDetail.results.FirstOrDefault());
-                Sponsors = new List<SponsorViewModel>();
+                Sponsors = _context.Sponsors.ToList()?.Select(x => new SponsorViewModel(x)).ToList();
             }
         }
 

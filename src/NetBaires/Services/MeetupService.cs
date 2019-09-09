@@ -106,7 +106,7 @@ namespace NetBaires.Services
         }
         public async Task<MemberDetail> GetMemberDetail(string memberId)
         {
-            var eventsResults = await _client.GetAsync(
+            var eventsResults = await GetCallApi(
                 $"2/member/{memberId}?key={_meetupOptions.Value.Key}&group_urlname=ny-tech&sign=true");
             return await eventsResults.Content.ReadAsAsync<MemberDetail>() ?? new MemberDetail(); ;
         }
