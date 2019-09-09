@@ -68,262 +68,265 @@
 </section>
 <!--BANNER END-->
 <!--ABOUT-->
-<section>
-    <div style="background:none;background-color:white" id="lgx-about" class="lgx-about lgx-about2">
-        <div class="lgx-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="lgx-about-content-area">
-                            <div class="lgx-heading">
-                            </div>
-                            <div class="lgx-about-content">
-                                <img src="@Model.Event.ImageUrl" />
+@if (Model.Event != null)
+{
+    <section>
+        <div style="background:none;background-color:white" id="lgx-about" class="lgx-about lgx-about2">
+            <div class="lgx-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="lgx-about-content-area">
+                                <div class="lgx-heading">
+                                </div>
+                                <div class="lgx-about-content">
+                                    <img src="@Model.Event.ImageUrl" />
 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="lgx-about-content-area">
-                            <div class="lgx-heading">
-                                <h2 class="heading">@Model.Event.Name</h2>
-                                <h3 class="subheading">@Model.Event.Date.ToString("dddd, dd MMMM yyyy HH:mm:ss")</h3>
-                                <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Model.Event.Venue.Lat,@Model.Event.Venue.Long">
-                                    <h3 class="subheading">@Model.Event.Venue.CompanyName</h3>
-                                </a>
-                            </div>
-                            <div class="lgx-about-content">
-                                <p class="text">
-                                    @Html.Raw(Model.Event.Description.Substring(0, Model.Event.Description.Length > 500 ? 300 : Model.Event.Description.Length - 1));
-                                </p>
-                                <div class="section-btn-area">
-                                    <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/@Model.Event.Id/">Mas Información</a>
-                                    <a class="lgx-btn lgx-btn-red lgx-scroll" href="https://www.meetup.com/es-ES/Net-Baires/events/@Model.Event.Id/">Anotate</a>
+                        <div class="col-md-6">
+                            <div class="lgx-about-content-area">
+                                <div class="lgx-heading">
+                                    <h2 class="heading">@Model.Event.Name</h2>
+                                    <h3 class="subheading">@Model.Event.Date.ToString("dddd, dd MMMM yyyy HH:mm:ss")</h3>
+                                    <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=@Model.Event.Venue.Lat,@Model.Event.Venue.Long">
+                                        <h3 class="subheading">@Model.Event.Venue.CompanyName</h3>
+                                    </a>
+                                </div>
+                                <div class="lgx-about-content">
+                                    <p class="text">
+                                        @Html.Raw(Model.Event.Description.Substring(0, Model.Event.Description.Length > 500 ? 300 : Model.Event.Description.Length - 1));
+                                    </p>
+                                    <div class="section-btn-area">
+                                        <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/@Model.Event.Id/">Mas Información</a>
+                                        <a class="lgx-btn lgx-btn-red lgx-scroll" href="https://www.meetup.com/es-ES/Net-Baires/events/@Model.Event.Id/">Anotate</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!-- //.CONTAINER -->
-        </div><!-- //.INNER -->
-    </div>
-</section>
-<!--ABOUT END-->
-<!--SPEAKERS-->
-@if (Model.SpeakersToShow.Any())
-{
-
-    <section>
-        <div id="lgx-speakers" class="lgx-speakers">
-            <div class="lgx-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="lgx-heading">
-                                <h2 class="heading">Nuestros Speakers</h2>
-                                <h3 class="subheading">Estos son algunas de las personas que participaron como oradores en nuestra Comunidad</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!--//.ROW-->
-                    @await Component.InvokeAsync("Speakers", Model.SpeakersToShow)
-                    <!--//.ROW-->
-                    <div class="section-btn-area">
-                        <a asp-page="/Speakers/List" class="lgx-btn lgx-btn-big">Todos Nuestros Speakers</a>
-                    </div>
-                </div>
-                <!-- //.CONTAINER -->
-            </div>
-            <!-- //.INNER -->
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
         </div>
     </section>
 }
-@if (Model.Sponsors.Any())
-{
-    <section>
-        <div id="lgx-sponsors" class="lgx-sponsors lgx-sponsors-black">
-            <div class="lgx-inner-bg">
+    <!--ABOUT END-->
+    <!--SPEAKERS-->
+    @if (Model.SpeakersToShow.Any())
+    {
+
+        <section>
+            <div id="lgx-speakers" class="lgx-speakers">
+                <div class="lgx-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="lgx-heading">
+                                    <h2 class="heading">Nuestros Speakers</h2>
+                                    <h3 class="subheading">Estos son algunas de las personas que participaron como oradores en nuestra Comunidad</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <!--//.ROW-->
+                        @await Component.InvokeAsync("Speakers", Model.SpeakersToShow)
+                        <!--//.ROW-->
+                        <div class="section-btn-area">
+                            <a asp-page="/Speakers/List" class="lgx-btn lgx-btn-big">Todos Nuestros Speakers</a>
+                        </div>
+                    </div>
+                    <!-- //.CONTAINER -->
+                </div>
+                <!-- //.INNER -->
+            </div>
+        </section>
+    }
+    @if (Model.Sponsors.Any())
+    {
+        <section>
+            <div id="lgx-sponsors" class="lgx-sponsors lgx-sponsors-black">
+                <div class="lgx-inner-bg">
+                    <div class="lgx-inner">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="lgx-heading lgx-heading-white">
+                                        <h2 class="heading">Nuestros Sponsors</h2>
+                                        <h3 class="subheading">Estos son los Sponsors que hacen posible todo lo que hacemos.</h3>
+                                        <h3 class="subheading">Gracias!!!</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--//main row-->
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    @await Component.InvokeAsync("Sponsors", Model.Sponsors)
+
+                                </div>
+                                <!--//col-->
+                            </div>
+                            <div class="section-btn-area sponsor-btn-area">
+                                <a class="lgx-btn" href="#">Convertite en Sponsor</a>
+                            </div>
+                        </div>
+                        <!--//container-->
+                    </div>
+                </div>
+                <!--//lgx-inner-->
+            </div>
+        </section>
+    }
+    @if (Model.Photos.Any())
+    {
+        <section>
+            <div id="lgx-photo-gallery" class="lgx-gallery-popup lgx-photo-gallery-normal lgx-photo-gallery-black">
                 <div class="lgx-inner">
                     <div class="container">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="lgx-heading lgx-heading-white">
-                                    <h2 class="heading">Nuestros Sponsors</h2>
-                                    <h3 class="subheading">Estos son los Sponsors que hacen posible todo lo que hacemos.</h3>
-                                    <h3 class="subheading">Gracias!!!</h3>
+                                    <h2 class="heading">Galería de Fotos</h2>
+                                    <h3 class="subheading">Algunas fotos de nuestros eventos pasados!!</h3>
                                 </div>
                             </div>
                         </div>
-                        <!--//main row-->
-                        <div class="row">
-                            <div class="col-xs-12">
-                                @await Component.InvokeAsync("Sponsors", Model.Sponsors)
-
-                            </div>
-                            <!--//col-->
-                        </div>
-                        <div class="section-btn-area sponsor-btn-area">
-                            <a class="lgx-btn" href="#">Convertite en Sponsor</a>
-                        </div>
-                    </div>
-                    <!--//container-->
-                </div>
-            </div>
-            <!--//lgx-inner-->
-        </div>
-    </section>
-}
-@if (Model.Photos.Any())
-{
-    <section>
-        <div id="lgx-photo-gallery" class="lgx-gallery-popup lgx-photo-gallery-normal lgx-photo-gallery-black">
-            <div class="lgx-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="lgx-heading lgx-heading-white">
-                                <h2 class="heading">Galería de Fotos</h2>
-                                <h3 class="subheading">Algunas fotos de nuestros eventos pasados!!</h3>
-                            </div>
-                        </div>
-                    </div>
-                    @await Component.InvokeAsync("PhotosPreview", Model.Photos)
+                        @await Component.InvokeAsync("PhotosPreview", Model.Photos)
 
 
-                    <div class="section-btn-area">
-                        <a class="lgx-btn" href="https://www.instagram.com/netbaires/">Seguinos En Instagram</a>
+                        <div class="section-btn-area">
+                            <a class="lgx-btn" href="https://www.instagram.com/netbaires/">Seguinos En Instagram</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-}
-<!--PHOTO GALLERY END-->
-<!--News-->
-<section>
-    <div id="lgx-news" class="lgx-news">
-        <div class="lgx-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="lgx-heading">
-                            <h2 class="heading">Nuestros Eventos</h2>
-                            <h3 class="subheading">Eventos mas recientes</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row visible-md visible-lg">
-                    <div class="slider-class ">
-                        @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
-                    </div>
-                </div>
-                <div class="row visible-xs visible-sm">
-                    @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
-                </div>
-                <div class="section-btn-area">
-                    <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/past/">Todos Nuestros Eventos</a>
-                </div>
-            </div><!-- //.CONTAINER -->
-        </div><!-- //.INNER -->
-    </div>
-</section>
-<!--News END-->
-@if (Model.LeadsToShow.Any())
-{
+        </section>
+    }
+    <!--PHOTO GALLERY END-->
+    <!--News-->
     <section>
-        <div id="lgx-organizadores" class="lgx-organizadores">
+        <div id="lgx-news" class="lgx-news">
             <div class="lgx-inner">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="lgx-heading">
-                                <h2 class="heading">Organizadores</h2>
-                                <h3 class="subheading">Organizadores de Net-Baires</h3>
+                                <h2 class="heading">Nuestros Eventos</h2>
+                                <h3 class="subheading">Eventos mas recientes</h3>
                             </div>
                         </div>
                     </div>
                     <div class="row visible-md visible-lg">
-                        <div class="col-xs-12 slider-class">
-                            @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                        <div class="slider-class ">
+                            @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
                         </div>
                     </div>
                     <div class="row visible-xs visible-sm">
-                        <div class="col-xs-12">
-                            @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                        @await Component.InvokeAsync("LastEvents", new { Events = Model.Events })
+                    </div>
+                    <div class="section-btn-area">
+                        <a class="lgx-btn" href="https://www.meetup.com/es-ES/Net-Baires/events/past/">Todos Nuestros Eventos</a>
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section>
+    <!--News END-->
+    @if (Model.LeadsToShow.Any())
+    {
+        <section>
+            <div id="lgx-organizadores" class="lgx-organizadores">
+                <div class="lgx-inner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="lgx-heading">
+                                    <h2 class="heading">Organizadores</h2>
+                                    <h3 class="subheading">Organizadores de Net-Baires</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row visible-md visible-lg">
+                            <div class="col-xs-12 slider-class">
+                                @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                            </div>
+                        </div>
+                        <div class="row visible-xs visible-sm">
+                            <div class="col-xs-12">
+                                @await Component.InvokeAsync("MembersCarousel", Model.LeadsToShow)
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+    }
+    <!--TRAVEL INFO-->
+    <!--TRAVEL INFO END-->
+    <!--VIDEO-->
+    <section>
+        <div id="lgx-video" class="lgx-video">
+            <div class="lgx-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--<h2 class="lgx-video-title"><span>Watch Our Promo video!</span>How to make an online order</h2>-->
+                            <div class="lgx-video-area">
+                                <figure>
+                                    <figcaption>
+                                        <div class="video-icon">
+                                            <div class="lgx-vertical">
+                                                <a id="myModalLabel" class="icon" href="#" data-toggle="modal" data-target="#lgx-modal">
+                                                    <i class="fa fa-play " aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                                <!-- Modal-->
+                                <div id="lgx-modal" class="modal fade lgx-modal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe width="1280" height="720" src="https://www.youtube.com/embed/38818Yb9DVQ" frameborder="0" allowfullscreen></iframe>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- //.Modal-->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- //.CONTAINER -->
+            </div><!-- //.INNER -->
+        </div>
+    </section>
+    <section>
+        <div id="lgx-travelinfo" class="lgx-travelinfo">
+            <div class="lgx-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="lgx-heading">
+                                <h2 class="heading">@Model.Group.Name</h2>
+                                <h3 class="subheading">Somos la Comunidad de desarrolladores .Net mas grande de Argentina, con <b>@Model.Group.Members</b>  @Model.Group.Who </h3>
+                            </div>
+                        </div>
+                        <!--//main COL-->
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            @Html.Raw(Model.Group.Description)
+
+                        </div>
+                    </div>
+                    <!--//.ROW-->
+                </div>
+                <!-- //.CONTAINER -->
             </div>
         </div>
     </section>
-}
-<!--TRAVEL INFO-->
-<!--TRAVEL INFO END-->
-<!--VIDEO-->
-<section>
-    <div id="lgx-video" class="lgx-video">
-        <div class="lgx-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!--<h2 class="lgx-video-title"><span>Watch Our Promo video!</span>How to make an online order</h2>-->
-                        <div class="lgx-video-area">
-                            <figure>
-                                <figcaption>
-                                    <div class="video-icon">
-                                        <div class="lgx-vertical">
-                                            <a id="myModalLabel" class="icon" href="#" data-toggle="modal" data-target="#lgx-modal">
-                                                <i class="fa fa-play " aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </figcaption>
-                            </figure>
-                            <!-- Modal-->
-                            <div id="lgx-modal" class="modal fade lgx-modal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <iframe width="1280" height="720" src="https://www.youtube.com/embed/38818Yb9DVQ" frameborder="0" allowfullscreen></iframe>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- //.Modal-->
-                        </div>
-                    </div>
-                </div>
-            </div><!-- //.CONTAINER -->
-        </div><!-- //.INNER -->
-    </div>
-</section>
-<section>
-    <div id="lgx-travelinfo" class="lgx-travelinfo">
-        <div class="lgx-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="lgx-heading">
-                            <h2 class="heading">@Model.Group.Name</h2>
-                            <h3 class="subheading">Somos la Comunidad de desarrolladores .Net mas grande de Argentina, con <b>@Model.Group.Members</b>  @Model.Group.Who </h3>
-                        </div>
-                    </div>
-                    <!--//main COL-->
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        @Html.Raw(Model.Group.Description)
-
-                    </div>
-                </div>
-                <!--//.ROW-->
-            </div>
-            <!-- //.CONTAINER -->
-        </div>
-    </div>
-</section>
-<!--//.VIDEO END-->
+    <!--//.VIDEO END-->
