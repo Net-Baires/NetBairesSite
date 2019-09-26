@@ -54,7 +54,7 @@ namespace NetBaires.Pages
             if (groupDetail.results != null)
             {
                 Group = new GroupViewModel(groupDetail.results.FirstOrDefault());
-                Sponsors = new List<SponsorViewModel>();
+                Sponsors = _context.Sponsors.ToList()?.Select(x => new SponsorViewModel(x)).ToList();
             }
         }
 

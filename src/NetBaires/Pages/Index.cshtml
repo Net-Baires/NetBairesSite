@@ -23,7 +23,7 @@
 
 <!--BANNER-->
 <section>
-    <div style="background-image: url('/images/header.jpg')" id="lgx-parallax-banner" class="lgx-banner lgx-banner-parallax">
+    <div style="background-image: url('https://net-baires.azureedge.net/images/header.jpg')" id="lgx-parallax-banner" class="lgx-banner lgx-banner-parallax">
         <!--lgx-about-bottom-->
         <div class="lgx-section">
             <div id="layer-wrapper" class="lgx-item-parallax-banner">
@@ -36,7 +36,7 @@
                                     <!-- Date Format :"Y/m/d" || For Example: 1017/10/5  -->
                                     @if (Model.Event != null)
                                     {
-                                        <div id="lgx-countdown" data-date="@Model.Event.Date.ToString("yyyy/MM/dd")"></div>
+                                        <div id="lgx-countdown" data-date="@Model.Event.Date.ToString("yyyy/MM/dd HH:mm:ss")"></div>
                                     }
                                 </div>
                                 @*<h2 class="title">Conference <span><b>2</b><b>0</b><b>1</b><b>9</b></span></h2>*@

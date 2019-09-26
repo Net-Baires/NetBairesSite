@@ -10778,11 +10778,11 @@ lgx-zoomInUp
   color: #efa506;
 }
 .lgx-photo-gallery-black {
-  background: url('http://placehold.it/1920x800') bottom center no-repeat fixed;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
+    background: url('https://net-baires.azureedge.net/images/header.jpg') bottom center no-repeat fixed;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }
 .lgx-photo-gallery-black .lgx-inner {
   background: rgba(27, 39, 61, 0.9);
@@ -10794,11 +10794,11 @@ lgx-zoomInUp
 /* 2.13 Testimonials SECTION
 ---------------------------------------------------------------------*/
 .lgx-testimonial {
-  background: url('http://placehold.it/1920x1000') bottom center no-repeat;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
+    background: url('https://net-baires.azureedge.net/images/header.jpg') bottom center no-repeat;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }
 .lgx-testimonial .lgx-inner {
   background: rgba(255, 255, 255, 0.95);
