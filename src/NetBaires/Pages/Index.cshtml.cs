@@ -42,7 +42,11 @@ namespace NetBaires.Pages
             var nextEvent = await _meetupService.GetEvents(5, "upcoming");
             if (nextEvent.Any())
                 Event = new EventViewModel(nextEvent.LastOrDefault());
-            SpeakersToShow = new List<string>();
+            SpeakersToShow = _context.Speakers.Where(x => x.Events.Any())
+                .OrderByDescending(x => x.Events.Count)
+                .Take(6)
+                ?.ToList()
+                .Select(x => x.Id).ToList();
             var events = await _meetupService.GetEvents(5);
             var eventsToAdd = events?.Select(x =>
                     new EventViewModel(x))
